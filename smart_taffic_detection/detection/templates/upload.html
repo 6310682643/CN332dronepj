@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Upload Video</h1>
     <div class="container">
-        <form action="{% url 'uploadPage' %}" method="POST">
+        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input class="input" type="text" name="location" placeholder="location"></input>
-            <input type="file" accept="video/mp4,video/x-m4v,video/*"> 
-            <button type="submit">upload</button>
+            <input class="input" type="text" name="location" placeholder="location" required />
+            <input type="file" name="video" required/>
+            <input type="submit" value="upload"/>
         </form>
     </div>
 </body>
+
 </html>
