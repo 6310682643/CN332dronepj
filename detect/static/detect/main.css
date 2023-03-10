@@ -1,0 +1,12 @@
+body {
+    background-color: #F2F2F0;
+}
+
+button.button-upload {
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+    background-color: #C5B39F;
+    border: 5px solid #C5B39F;
+    border-radius: 15px;
+    margin: 20px;
+}
