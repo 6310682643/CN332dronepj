@@ -11,8 +11,9 @@
 <body>
     <h1>Upload Video</h1>
     <div class="container">
-        <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+        <form action="{% url 'uploadPage' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <input class="input" type="text" name="ownerName" placeholder="ownerName" required />
             <input class="input" type="text" name="location" placeholder="location" required />
             <input type="file" name="video" required />
             <input type="date" name="date">
