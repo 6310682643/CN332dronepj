@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="search-container">
+        <form action="{% url 'home' %}">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <a href="/upload/">New</a>
+    <table>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Location</th>
+          <th>status</th>
+          <th>Owner</th>
+          <th>Status</th>
+          <th> </th>
+        </tr>
+        {% for task in task %}
+        <tr>    
+          <td>{{ task.date_record }}</td>
+          <td>{{ task.time_record }}</td>
+          <td>{{ task.location }}</td>
+          <td>{{ task.traffic_status }}</td>
+          <td>{{ task.ownerName }}</td>
+          <td><a href="{% url 'delete' task.id %}">delete</a></td>
+          <td>{{ task.id }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+</body>
+</html>

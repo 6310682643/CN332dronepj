@@ -13,7 +13,9 @@ class Input(models.Model):
         ('fog', 'Fog'),
         ('null', 'Null')
     )
+    ownerName = models.CharField(max_length=999, default="")
     time_record = models.TimeField('time', default=timezone.now, null=True)
+    # time_record =models.DateTimeField(auto_now_add=True, default=timezone.now)
     date_record = models.DateTimeField('date', default=timezone.now, null=True)
     video = models.FileField(upload_to='uploads/video', blank=True)
     location = models.TextField(max_length=9999, default="", null=True)
