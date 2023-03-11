@@ -2,6 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator 
 # Create your models here.
+
+class Intersection(models.Model):
+    name = models.CharField(max_length=9999, default="")
+
+    def __str__(self):
+        return f"{self.name}"
+    
 class Input(models.Model):
     choices = (
         ('sunny', 'Sunny'),
@@ -14,6 +21,7 @@ class Input(models.Model):
         ('null', 'Null')
     )
     ownerName = models.CharField(max_length=999, default="")
+    intersection = models.ForeignKey(Intersection, null=True, on_delete=models.SET_NULL, default=None)
     time_record = models.TimeField('time', default=timezone.now, null=True)
     # time_record =models.DateTimeField(auto_now_add=True, default=timezone.now)
     date_record = models.DateTimeField('date', default=timezone.now, null=True)
@@ -34,9 +42,4 @@ class Result(models.Model):
     def __str__(self):
         return f"{self.video}"
     
-class Intersection(models.Model):
-    name = models.CharField(max_length=9999, default="")
-
-    def __str__(self):
-        return f"{self.name}"
 
