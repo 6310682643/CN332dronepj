@@ -14,6 +14,7 @@
         <form action="{% url 'uploadPage' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input class="input" type="text" name="ownerName" placeholder="ownerName" required />
+            <input class="input" type="text" name="intersection_name" placeholder="intersection name" required />
             <input class="input" type="text" name="location" placeholder="location" required />
             <input type="file" name="video" required />
             <input type="date" name="date">

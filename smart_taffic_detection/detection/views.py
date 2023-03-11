@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from .models import Input, Result
+from .models import Input, Result, Intersection
 from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def uploadPage(request):
-    print(timezone.now().strftime('%H:%M:%S.%f')[:-3])
     d = timezone.now()
     if request.method == "GET":
         return render(request, "upload.html")
@@ -16,23 +15,30 @@ def uploadPage(request):
         ownerName = request.POST['ownerName']
         video = request.FILES['video']
         location = request.POST['location']
+        intersection_name = request.POST['intersection_name'] if request.POST.get('intersection_name') is not None else ''
         time = request.POST.get('time') if request.POST.get('time') != "" else d.strftime("%H:%M:%S")
         date = request.POST.get('date') if request.POST.get('date') != "" else d.strftime("%Y-%m-%d")
         print(request.POST.get('traffic_status'))
         traffic_status = request.POST.get('traffic_status') if request.POST.get('traffic_status') is not None else 0
         note = request.POST['note'] if request.POST.get('note') is not None else ""
         weather = request.POST['weather'] if request.POST.get('weather') is not None else "Sunny"
+        intersection = Intersection.objects.filter(name=intersection_name)
+        if intersection:
+            intersection = Intersection.objects.filter(name=intersection_name).get()    
+        else:
+            intersection = createIntersection(intersection_name)
+    
         input = Input.objects.create(
             time_record=time, 
             date_record=date, 
-            video=video, 
+            video=video,
+            intersection = intersection, 
             location=location, 
             traffic_status=traffic_status, 
             note=note,
             weather=weather,  
             ownerName=ownerName
         )
-   
         return HttpResponseRedirect(reverse('home'))
     else:
         return HttpResponseRedirect(reverse('home'))
@@ -61,16 +67,26 @@ def homeStatus(request):
         return HttpResponseRedirect(reverse("loginPage"))
     
 def home(request):
-  task = Input.objects.all()
-#   template = loader.get_template('home.html')
-  return render(request, 'home.html', {'task': task,})
+    if request.method == "GET":
+        searched = request.GET.get('searched')
+        if searched:
+            intersection_id = Intersection.objects.filter(name=searched).values_list('id', flat=True)
+            task = Input.objects.filter(intersection_id__in=intersection_id).all()
+            return render(request, 'home.html', {'task': task,})
+        else:
+            task = Input.objects.all()
+            return render(request, 'home.html', {'task': task,})
+#   task = Input.objects.all()
+#    template = loader.get_template('home.html')
+#   return render(request, 'home.html', {'task': task,})
 
 def delete(request, id):
     task = Input.objects.get(pk=id)
     task.delete()
     return redirect('home')
 
-
+def createIntersection(name):
+    return Intersection.objects.create(name=name)
 
 # def searchBar(request):
 #     if not request.user.is_authenticated:
@@ -80,8 +96,8 @@ def delete(request, id):
 #     if request.method == "GET":
 #         searched = request.GET.get('searched')
 #         if searched:
-#             blogs = Blog.objects.filter(title__contains=searched)
-#             return render(request, 'users/searchfor.html', {'blogs': blogs})
+#             task = Input.objects.all()
+#             return render(request, 'home.html', {'task': task,})
 #         else:
-#             print("No information to show")
-#             return render(request, 'users/searchfor.html', {'wallet':wallet})
+#             task = Input.objects.all()
+#             return render(request, 'home.html', {'task': task,})
