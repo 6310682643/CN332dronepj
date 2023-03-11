@@ -33,9 +33,9 @@ def uploadPage(request):
             ownerName=ownerName
         )
    
-        return render(request, "home.html")
+        return HttpResponseRedirect(reverse('home'))
     else:
-        return render(request, "home.html")
+        return HttpResponseRedirect(reverse('home'))
 
 def loginPage(request):
     if request.method == "POST":
