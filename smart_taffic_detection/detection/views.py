@@ -1,4 +1,4 @@
-
+from .task import call_detect
 from django.shortcuts import render, redirect
 from .models import Input, Result
 from django.utils import timezone
@@ -32,10 +32,10 @@ def uploadPage(request):
             weather=weather,  
             ownerName=ownerName
         )
-   
-        return render(request, "home.html")
+        call_detect.delay()
+        return HttpResponseRedirect(reverse('home'))
     else:
-        return render(request, "home.html")
+        return render(request, "upload.html")
 
 def loginPage(request):
     if request.method == "POST":
@@ -69,7 +69,6 @@ def delete(request, id):
     task = Input.objects.get(pk=id)
     task.delete()
     return redirect('home')
-
 
 
 # def searchBar(request):
