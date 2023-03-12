@@ -101,3 +101,8 @@ def createIntersection(name):
 #         else:
 #             task = Input.objects.all()
 #             return render(request, 'home.html', {'task': task,})
+
+def generalInfo(request, id):
+    result = Result.objects.filter(pk=id).get()
+    input = Input.objects.filter(pk=result.input_video).get()
+    return render(request, 'generalInfo.html', {'result': result, 'input': input})

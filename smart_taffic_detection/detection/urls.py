@@ -9,6 +9,7 @@ urlpatterns = [
     # path('search/', views.searchBar, name='search'),
     path('delete/<int:id>', views.delete, name='delete'),
     path('home/', views.home, name="home"),
+    path('generalInfo/<int:id>',views.generalInfo, name='generalInfo'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
