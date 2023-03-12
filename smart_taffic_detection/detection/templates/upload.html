@@ -23,23 +23,21 @@
             <input type="date" name="date" />
             <input type="time" name="time" style="margin-left: 20px;" />
         </p>
-
-            <label for="weather_choice">Weather</label>
-            <select id="weather_choice" name="weather_choice" required style="margin-left: 90px;">
+        <!-- Weather form -->
+        <p>
+            <label for="weather">Weather</label>
+            <select name="weather" id="weather" style="margin-left: 90px;">
                 <option value="">Select an option</option>
-                {% for choice in weather_choices %}
-                <option value="{{ choice.0 }}" {% if choice.0 == weather_choice %}selected{% endif %}>{{ choice.1 }}</option>
+                {% for choice in input.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
                 {% endfor %}
             </select>
-        
+        </p>
         <p>
             <label>Note</label>
             <input class="input" type="text" name="note" required style="margin-left: 120px;"/>
         </p>
-        <p>
-            <input class="button" type="submit" value="submit" />
-        </p>
-        
+        <input class="button" type="submit" value="submit" />
     </form>
 </div>
 {% endblock %}

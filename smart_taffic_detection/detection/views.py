@@ -18,7 +18,7 @@ def uploadPage(request):
         print(request.POST.get('traffic_status'))
         traffic_status = request.POST.get('traffic_status') if request.POST.get('traffic_status') is not None else 0
         note = request.POST['note'] if request.POST.get('note') is not None else ""
-        weather = request.POST['weather_choice'] if request.POST.get('weather_choice') is not None else "Sunny"
+        weather = request.POST['weather'] if request.POST.get('weather') is not None else "Sunny"
         input = Input.objects.create(
             time_record=time, 
             date_record=date, 
@@ -26,14 +26,11 @@ def uploadPage(request):
             location=location, 
             traffic_status=traffic_status, 
             note=note,
-            weather_choice=weather
+            weather=weather
         )
-        return render(request, "upload.html")
+        return render(request, "upload.html", {'input': input})
     else:
         return render(request, "upload.html")
     
-
-
-
 
     
