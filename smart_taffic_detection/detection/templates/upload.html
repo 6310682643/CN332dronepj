@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Upload</h1>
+<div class="form-upload">
+    <form action="{% url 'upload' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label>Location</label>
+            <input class="input" type="text" name="location" required style="margin-left: 87px;"/>
+        </p>
+        <p>
+            <label>Intersection name</label>
+            <input class="input" type="text" name="name" required style="margin-left: 10px;"/>
+        </p>
+        <p>
+            <label>Video</label>
+            <input type="file" name="video" required style="margin-left: 115px;"/>
+        </p>
+        <p>
+            <input type="date" name="date" />
+            <input type="time" name="time" style="margin-left: 20px;" />
+        </p>
+        <!-- Weather form -->
+        <p>
+            <label for="weather">Weather</label>
+            <select name="weather" id="weather" style="margin-left: 90px;">
+                <option value="">Select an option</option>
+                {% for choice in input.choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Note</label>
+            <input class="input" type="text" name="note" required style="margin-left: 120px;"/>
+        </p>
+        <input class="button" type="submit" value="submit" />
+    </form>
+</div>
+{% endblock %}
