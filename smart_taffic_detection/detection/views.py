@@ -111,3 +111,23 @@ def edit(request, id):
 
 def createIntersection(name):
     return Intersection.objects.create(name=name)
+
+# def searchBar(request):
+#     if not request.user.is_authenticated:
+#         return HttpResponseRedirect(reverse("login"))
+#     user_id = request.user.id
+
+#     if request.method == "GET":
+#         searched = request.GET.get('searched')
+#         if searched:
+#             task = Input.objects.all()
+#             return render(request, 'home.html', {'task': task,})
+#         else:
+#             task = Input.objects.all()
+#             return render(request, 'home.html', {'task': task,})
+
+def generalInfo(request, id):
+    result = Result.objects.filter(pk=id).get()
+    input = Input.objects.filter(pk=result.input_video.pk).get()
+    return render(request, 'generalInfo.html', {'result': result, 'input': input})
+
