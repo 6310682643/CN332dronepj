@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from .forms import InputForm
+
 # Create your views here.
 
 def uploadPage(request):
