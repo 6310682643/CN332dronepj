@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from .forms import InputForm
 # Create your views here.
 
 def uploadPage(request):
@@ -83,7 +84,30 @@ def home(request):
 def delete(request, id):
     task = Input.objects.get(pk=id)
     task.delete()
-    return redirect('home')
+    return HttpResponseRedirect(reverse('home'))
+
+def edit(request, id):
+    task = Input.objects.get(pk=id)
+    d = timezone.now()
+    if request.method=='POST' :
+        task.ownerName = request.POST.get('ownerName')
+        task.location = request.POST.get('location')
+        # video = request.FILES.get('video') 
+        # if video:
+        #     task.video = video
+        task.time_record = request.POST.get('time') if request.POST.get('time') != "" else d.strftime("%H:%M:%S")
+        task.date_record = request.POST.get('date') if request.POST.get('date') != "" else d.strftime("%Y-%m-%d")
+        intersection_name = request.POST['intersection'] if request.POST.get('intersection') is not None else ''
+        intersection = Intersection.objects.filter(name=intersection_name)
+        if intersection:
+            intersection = Intersection.objects.filter(name=intersection_name).get()    
+        else:
+            intersection = createIntersection(intersection_name)
+        task.intersection = intersection
+        task.save()
+        return HttpResponseRedirect(reverse('home'))
+    else:
+        return render(request, 'edit.html', {'edit': task, 'id':task.id})
 
 def createIntersection(name):
     return Intersection.objects.create(name=name)
@@ -106,3 +130,4 @@ def generalInfo(request, id):
     result = Result.objects.filter(pk=id).get()
     input = Input.objects.filter(pk=result.input_video.pk).get()
     return render(request, 'generalInfo.html', {'result': result, 'input': input})
+
