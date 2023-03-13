@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 def uploadPage(request):
     d = timezone.now()
     if request.method == "GET":
-        return render(request, "upload.html")
+        return render(request, "upload.html", {'choice': Input.choices})
     if request.method == "POST" and (request.FILES.get('video') is not None ):
         ownerName = request.POST['ownerName']
         video = request.FILES['video']

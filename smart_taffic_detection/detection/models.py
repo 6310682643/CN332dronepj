@@ -40,6 +40,6 @@ class Result(models.Model):
     loop = models.FileField(upload_to='uploads/files', blank=True)
 
     def __str__(self):
-        return f"{self.video}"
+        return f"{self.pk}. {self.video}"
     
 
