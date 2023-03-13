@@ -19,9 +19,10 @@
           <th>Date</th>
           <th>Time</th>
           <th>Location</th>
-          <th>status</th>
+          <th>traffic status</th>
           <th>Owner</th>
           <th>intersection</th>
+          <th>status</th>
           <th> </th>
           <th> </th>
         </tr>
@@ -33,6 +34,13 @@
           <td>{{ task.traffic_status }}</td>
           <td>{{ task.ownerName }}</td>
           <td>{{ task.intersection }}</td>
+          {% if task.detect_status == 0 %}
+          <td>pending...</td>
+          {% elif task.detect_status == 1 %}
+          <td>processing...</td>
+          {% else %}
+          <td>complete!</td>
+          {% endif %}
           <td><a href="{% url 'delete' task.id %}">delete</a></td>
           <td><a href="{% url 'edit' task.id %}">edit</a></td>
           

@@ -28,6 +28,7 @@ class Input(models.Model):
     video = models.FileField(upload_to='uploads/video', blank=True)
     location = models.TextField(max_length=9999, default="", null=True)
     traffic_status = models.IntegerField(default=0, null=True, validators=[MinValueValidator(0)])
+    detect_status = models.IntegerField(default=0, null=True, validators=[MinValueValidator(0)])
     note = models.TextField(max_length=9999, default="", null=True)
     weather = models.CharField(max_length=999, choices=choices, default="null")
 
