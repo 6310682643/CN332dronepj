@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator 
+from datetime import datetime
 # Create your models here.
 
 class Intersection(models.Model):
@@ -24,7 +25,7 @@ class Input(models.Model):
     intersection = models.ForeignKey(Intersection, null=True, on_delete=models.SET_NULL, default=None)
     time_record = models.TimeField('time', default=timezone.now, null=True)
     # time_record =models.DateTimeField(auto_now_add=True, default=timezone.now)
-    date_record = models.DateTimeField('date', default=timezone.now, null=True)
+    date_record = models.DateField('date', default=datetime.now, null=True)
     video = models.FileField(upload_to='uploads/video', blank=True)
     location = models.TextField(max_length=9999, default="", null=True)
     traffic_status = models.IntegerField(default=0, null=True, validators=[MinValueValidator(0)])

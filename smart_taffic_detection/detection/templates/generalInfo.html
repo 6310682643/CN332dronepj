@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    <title>General Information</title>
+{% endblock %}
+
+{% block content %}
+
+<header>
+    <center>
+    <h1 class="name ">Name Intersection {{ input.intersection.name}} </h1>
+    <h3 style="font-family:'Poppins', sans-serif; padding-left: 20px; padding-top: 20px; padding-bottom: 20px;">preview area</h3>
+    </center>
+</header>
+
+    <center>
+        <video style=" width: 600px; "controls="controls">
+            <source src="{{ result.video.url }}" type="video/mp4" />
+        </video>
+    <p>location:{{ input.location}} </p>
+    </center>
+       
+<div class="g1" >
+
+    <p>date : {{ input.date_record }} </p>
+    <p>time : {{ input.time_record }} </p>
+    <p>weather : {{ input.weather }} </p>
+    <p>note : {{ input.note }} </p>
+    
+</div>
+
+<footer>
+    <center>
+        <a class="insight" href="{% url 'home' %}"><span> BACK </span></a>
+    </center> 
+</footer>
+
+
+
+{% endblock %}

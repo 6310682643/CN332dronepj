@@ -5,13 +5,14 @@ from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.db.models import Q
 # Create your views here.
+def homepage(request):
+    return render(request, "homepage.html")
 
 def uploadPage(request):
     d = timezone.now()
     if request.method == "GET":
-        return render(request, "upload.html")
+        return render(request, "upload.html", {'choice': Input.choices})
     if request.method == "POST" and (request.FILES.get('video') is not None ):
         ownerName = request.POST['ownerName']
         video = request.FILES['video']
@@ -72,12 +73,15 @@ def home(request):
         searched = request.GET.get('searched')
         if searched:
             intersection_id = Intersection.objects.filter(name=searched).values_list('id', flat=True)
-            task = Input.objects.filter(Q(intersection_id__in=intersection_id) | Q(location=searched)).all()
+            task = Input.objects.filter(intersection_id__in=intersection_id).all()
             return render(request, 'home.html', {'task': task,})
         else:
             task = Input.objects.all()
             return render(request, 'home.html', {'task': task,})
-        
+#   task = Input.objects.all()
+#    template = loader.get_template('home.html')
+#   return render(request, 'home.html', {'task': task,})
+
 def delete(request, id):
     task = Input.objects.get(pk=id)
     task.delete()
@@ -108,13 +112,16 @@ def edit(request, id):
 
 def createIntersection(name):
     return Intersection.objects.create(name=name)
-
-def generalInfo(request, id):
-    result = Result.objects.filter(pk=id).get()
-    input = Input.objects.filter(pk=result.input_video.pk).get()
+    
+def generalInfo(request, id): 
+    input = Input.objects.filter(pk=id).get()
+    result = Result.objects.filter(input_video_id=input.pk).first()
     return render(request, 'generalInfo.html', {'result': result, 'input': input})
 
 def edit_status(status, id):
     input = Input.objects.filter(pk=id).get()
     input.detect_status = status
     input.save()
+
+
+    

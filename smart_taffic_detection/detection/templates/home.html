@@ -1,51 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="search-container">
-        <form action="{% url 'home' %}">
-          <input type="text" placeholder="Search.." name="searched">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<div class = "content">
+<div class ="container1">
+
+    <form action ="" class ="search-bar">
+      <button type="'submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    
+      <input type ="search" placeholder="Search" name="searched">
+    </form>
+    <div class = "task">
+      <a class="btn btn-lg" href="{% url 'uploadPage' %}" > + New task</a>
     </div>
-    <a href="/upload/">New</a>
-    <table>
+</div>
+
+
+<table rowspan="2">
+    <thead>
         <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Location</th>
-          <th>traffic status</th>
-          <th>Owner</th>
-          <th>intersection</th>
-          <th>status</th>
-          <th> </th>
-          <th> </th>
+            <th> Date </th>
+            <th> Name </th>
+            <th> Location </th>
+            <th> Status </th>
+            <th> Date <br> Upload </th>
+            <th> Owner <br> (username)</th>
+            <th> </th>
         </tr>
+    </thead>
+    <tbody>
         {% for task in task %}
-        <tr>    
-          <td>{{ task.date_record }}</td>
-          <td>{{ task.time_record }}</td>
-          <td>{{ task.location }}</td>
-          <td>{{ task.traffic_status }}</td>
-          <td>{{ task.ownerName }}</td>
+        <tr>
+          <td>{{ task.date_record }} {{ task.time_record }} </td>
           <td>{{ task.intersection }}</td>
+          <td>{{ task.location }}</td>
           {% if task.detect_status == 0 %}
-          <td>pending...</td>
+          <td>pending... </td>
           {% elif task.detect_status == 1 %}
           <td>processing...</td>
           {% else %}
           <td>complete!</td>
           {% endif %}
-          <td><a href="{% url 'delete' task.id %}">delete</a></td>
-          <td><a href="{% url 'edit' task.id %}">edit</a></td>
-          
-        </tr>
-        {% endfor %}
-      </table>
-</body>
-</html>
+          <td>{{ task.date_upload }}</td>
+          <td>{{ task.ownerName}}</td>
+          <td><a class="btn btn-secondary btn-sm"  href="{% url 'edit' task.id %}">Edit</a>
+          <a class="btn btn-sm btn-danger btn-sm"  href="{% url 'delete' task.id %}">Delete</a> <br>
+          <a class="btn btn-secondary btn-sm"  href="{% url 'generalInfo' task.id %}">Detail</a>
+          </td>
+        {%endfor%}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}
