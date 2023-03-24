@@ -7,21 +7,22 @@
 
 {% block content %}
 
-<div class = "content">
-<div class ="container1">
-
+<div class = "content" style="margin: auto;">
+  <div class ="container1" style="margin-left: 100px;">
     <form action ="" class ="search-bar">
-      <button type="'submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
     
       <input type ="search" placeholder="Search" name="searched">
     </form>
-    <div class = "task">
-      <a class="btn btn-lg" href="{% url 'uploadPage' %}" > + New task</a>
+    <div class = "task" style="margin-left: 300px;">
+      <button style="width: 200px; height: 36px; border-radius: 60px;">
+        <a href="{% url 'uploadPage' %}" style="text-decoration: none; font-size: 20px; color: #F2F2F0;"> + New task</a>
+      </button>
     </div>
-</div>
+  </div>
+    
 
-
-<table rowspan="2">
+<table rowspan="2" style="margin: auto;">
     <thead>
         <tr>
             <th> Date </th>
@@ -48,13 +49,15 @@
           {% endif %}
           <td>{{ task.date_upload }}</td>
           <td>{{ task.ownerName}}</td>
-          <td><a class="btn btn-secondary btn-sm"  href="{% url 'edit' task.id %}">Edit</a>
-          <a class="btn btn-sm btn-danger btn-sm"  href="{% url 'delete' task.id %}">Delete</a> <br>
-          <a class="btn btn-secondary btn-sm"  href="{% url 'generalInfo' task.id %}">Detail</a>
+          <td><a class="btn btn-outline-secondary" style="width: 82px; height: 37px;" href="{% url 'edit' task.id %}">Edit</a>
+            <a class="btn btn-outline-info" style="width: 82px; height: 37px;" href="{% url 'generalInfo' task.id %}">Detail</a><br>
+            <a class="btn btn-outline-danger"   href="{% url 'delete' task.id %}">Delete</a> 
+          
           </td>
         {%endfor%}
     </tbody>
 </table>
+
 </div>
 
 

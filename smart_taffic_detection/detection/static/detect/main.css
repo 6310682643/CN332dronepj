@@ -35,10 +35,7 @@ body {
 }
 .container1 {
     padding: 5%;
-
-    
 }
-
 .button {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
@@ -188,7 +185,7 @@ button{
 
 button:hover,
 button:focus{
-    background: rgb(253, 241, 194);
+    background: rgb(253, 194, 194);
     width: 150px;
     color: bisque;
 }
@@ -232,12 +229,12 @@ td {
 .search-bar{
     width: 200px;
     max-width: 100%;
-    background-color: #C5B39F;
+    background-color: #9fc5a4;
     display: flex;
     align-items: center;
     border-radius: 60px;
     padding: 2px 30px;
-    margin-left: 5em;
+    margin-left: 70px;
 
 }
 
@@ -254,22 +251,9 @@ td {
     color:#F2F2F0
 }
 
-.task {
+/* .task span{
     text-align: center;
-    height: 36px;
-    width: 200px;
-    max-width: 100%;
-    font-size: 2px;
-    background-color: #C5B39F;
-    display: flex;
-    border-radius: 60px;
-    margin: -35px 300px;
-    margin-left: 400px;
-   
-}
-.task span{
-    text-align: center;
-}
+} */
 
 input {
     margin-left: 10px;

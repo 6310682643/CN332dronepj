@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.db.models import Q
 # Create your views here.
 def homepage(request):
     return render(request, "homepage.html")
@@ -73,14 +74,11 @@ def home(request):
         searched = request.GET.get('searched')
         if searched:
             intersection_id = Intersection.objects.filter(name=searched).values_list('id', flat=True)
-            task = Input.objects.filter(intersection_id__in=intersection_id).all()
+            task = Input.objects.filter(Q(intersection_id__in=intersection_id) | Q(location=searched)).all()
             return render(request, 'home.html', {'task': task,})
         else:
             task = Input.objects.all()
             return render(request, 'home.html', {'task': task,})
-#   task = Input.objects.all()
-#    template = loader.get_template('home.html')
-#   return render(request, 'home.html', {'task': task,})
 
 def delete(request, id):
     task = Input.objects.get(pk=id)
