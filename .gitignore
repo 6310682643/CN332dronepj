@@ -10,7 +10,7 @@ dormtown/settings.py
 *.so
 */migrations/
 */__pycache__/
-
+.__pycache__/
 # Distribution / packaging
 .Python
 build/
