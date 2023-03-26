@@ -102,6 +102,7 @@ __pypackages__/
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
+smart_taffic_detection/smart_taffic_detection/__init__.py
 
 # SageMath parsed files
 *.sage.py
