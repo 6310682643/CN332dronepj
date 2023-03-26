@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,4 +18,38 @@
         <center><button class="button-login" type="submit">sign in</button></center><br>
     </form>
 </body>
-</html>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/detect/main.css" type="text/css" />
+</head>
+
+<body>
+    <center>
+        <div class="center">
+            <div class="h2">
+
+                <h1>LOGIN</h1>
+                <form action="{% url 'loginPage' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="textbox">
+                        <label for="username">USERNAME: </label><br />
+                        <input class="text1" type="text" id="username" name="username" placeholder="username"><br />
+                        <label for="password">PASSWORD: </label><br />
+                        <input class="text1" type="password" id="password" name="password" placeholder="password"><br />
+                        <br>
+                        <input class="login" type="submit" value="Login">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</body>

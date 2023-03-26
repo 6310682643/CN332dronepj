@@ -6,7 +6,8 @@ import os
 from celery import Celery
 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "smart_taffic_detection.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      "smart_taffic_detection.settings")
 
 app = Celery("smart_taffic_detection")
 
