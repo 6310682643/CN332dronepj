@@ -1,0 +1,55 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LOGIN</h1>
+    <form action="{% url 'loginPage' %}" method="POST">
+        {% csrf_token %}
+        <span style="color:rgb(15, 15, 16);font-weight:bold">Username</span><br>
+        <input class='input' type="text" name="username" placeholder="Enter your username"><br>
+        <span style="color:rgb(14, 14, 15);font-weight:bold">Password </span><br>
+        <input class='input' type="password" name="password" id="password"
+            placeholder="Enter your password"><br><br>
+        <center><button class="button-login" type="submit">sign in</button></center><br>
+    </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/detect/main.css" type="text/css" />
+</head>
+
+<body>
+    <center>
+        <div class="center">
+            <div class="h2">
+
+                <h1>LOGIN</h1>
+                <form action="{% url 'loginPage' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="textbox">
+                        <label for="username">USERNAME: </label><br />
+                        <input class="text1" type="text" id="username" name="username" placeholder="username"><br />
+                        <label for="password">PASSWORD: </label><br />
+                        <input class="text1" type="password" id="password" name="password" placeholder="password"><br />
+                        <br>
+                        <input class="login" type="submit" value="Login">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>
+</body>

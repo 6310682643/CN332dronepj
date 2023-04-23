@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Upload</h1>
+<div class="form-upload">
+    <form action="{% url 'uploadPage' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label>Owner</label>
+            <input class="input" type="text" name="ownerName" required style="margin-left: 102px;" />
+        </p>
+        <p>
+            <label>Location</label>
+            <input class="input" type="text" name="location" required style="margin-left: 87px;" />
+        </p>
+        <p>
+            <label>Intersection name</label>
+            <input class="input" type="text" name="intersection_name" style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>Video</label>
+            <input type="file" name="video" required style="margin-left: 115px;" />
+        </p>
+        <p>
+            <input type="date" name="date" />
+            <input type="time" name="time" style="margin-left: 20px;" />
+        </p>
+        <!-- Weather form -->
+        <p>
+            <label for="weather">Weather</label>
+            <select name="weather" id="weather" style="margin-left: 90px;">
+                <option value="">Select an option</option>
+                {% for choice in choice %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label>Note</label>
+            <input class="input" type="text" name="note" style="margin-left: 120px;" />
+        </p>
+        <p style="display: inline; margin-top: 30px;">
+            <input class="button-submit" type="submit" value="Submit" />
+            <button class="button-cancle">
+                <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none;">Cancel</a>
+            </button>
+        </p>
+
+    </form>
+</div>
+
+{% endblock %}
