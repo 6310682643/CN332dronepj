@@ -5,7 +5,6 @@ def edit_status(status, id):
     input.detect_status = status
     input.save()
 
-
 from .task import call_detect
 from django.shortcuts import render, redirect
 
@@ -20,7 +19,15 @@ from django.db.models import Q
 
 
 
-
+def createLoop(request, id):
+    task = Input.objects.get(pk=id)
+    if request.method == "POST":
+        loopName = request.POST['loopName']
+        x = request.POST['x']
+        y = request.POST['y']
+        return render(request, "loop.html", {'loop': task, 'id': task.id})
+    if request.method == "GET":
+        return render(request, "loop.html", {'loop': task, 'id': task.id})
 
 def uploadPage(request):
     print(timezone.now().strftime('%H:%M:%S.%f')[:-3])
@@ -66,7 +73,8 @@ def uploadPage(request):
 
         result = call_detect.delay('./' + input.video.url, input.pk)
 
-        return HttpResponseRedirect(reverse('home'))
+        # return HttpResponseRedirect(reverse('createLoop'))
+        return render(request, "loop.html", {'id': input.pk})
     else:
         return render(request, "upload.html")
 
@@ -94,10 +102,6 @@ def loginPage(request):
 
     return render(request, 'login.html')
 
-# def home(request):
-#     task = Input.objects.all()
-# #   template = loader.get_template('home.html')
-#     return render(request, 'home.html', {'task': task, })
 def home(request):
     if request.method == "GET":
         searched = request.GET.get('searched')

@@ -17,7 +17,7 @@
         </p>
         <p>
             <label>Intersection name</label>
-            <input class="input" type="text" name="intersection_name" style="margin-left: 10px;" />
+            <input class="input" type="text" name="intersection_name" required style="margin-left: 10px;" />
         </p>
         <p>
             <label>Video</label>
@@ -44,11 +44,11 @@
         <p style="display: inline; margin-top: 30px;">
             <input class="button-submit" type="submit" value="Submit" />
             <button class="button-cancle">
-                <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none;">Cancel</a>
+                <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
             </button>
-        </p>
-
+        </p>   
     </form>
+    
 </div>
 
 {% endblock %}

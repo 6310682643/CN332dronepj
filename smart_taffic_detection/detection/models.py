@@ -52,3 +52,8 @@ class Result(models.Model):
 
     def __str__(self):
         return f"{self.video}"
+
+class CreateLoop(models.Model):
+    loopName = models.CharField(max_length=999, default="")
+    x = models.IntegerField(default=0, null=True)
+    y = models.IntegerField(default=0, null=True)

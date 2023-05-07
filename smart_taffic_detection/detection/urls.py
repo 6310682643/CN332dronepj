@@ -24,6 +24,7 @@ urlpatterns = [
     path('home/', views.home, name="home"),
     path('upload/', views.uploadPage, name="uploadPage"),
     path('generalInfo/<int:id>', views.generalInfo, name='generalInfo'),
+    path('createLoop/<int:id>', views.createLoop, name='createLoop'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

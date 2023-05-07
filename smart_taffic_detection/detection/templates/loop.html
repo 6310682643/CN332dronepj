@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1> Create Loop</h1>
+<div class="form-upload">
+    <form action="{% url 'createLoop' id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            <label>loop name</label>
+            <input class="input" type="text" name="loopName" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>x</label>
+            <input class="input" type="text" name="x" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>y</label>
+            <input class="input" type="text" name="y" required style="margin-left: 10px;" />
+            
+        </p>
+        <p style="display: inline; margin-top: 30px;">
+            <input class="button-submit" type="submit" value="Submit" />
+            <button class="button-cancle">
+                <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
+            </button>
+        </p>   
+    </form>
+</div>
+{% endblock %}
