@@ -8,8 +8,10 @@ dormtown/settings.py
 
 # C extensions
 *.so
-*/migrations/
-*/__pycache__/
+**/migrations/*
+**/__pycache__/
+smart_taffic_detection/detection/__pycache__/
+*/__pycache__/*
 .__pycache__/
 # Distribution / packaging
 .Python
@@ -132,3 +134,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+smart_taffic_detection/media/*

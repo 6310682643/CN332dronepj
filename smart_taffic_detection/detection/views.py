@@ -7,7 +7,12 @@ def edit_status(status, id):
 
 from .task import call_detect
 from django.shortcuts import render, redirect
-
+from django.conf import settings
+import cv2
+import numpy as np
+import uuid
+import io
+import os
 from django.utils import timezone
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -36,7 +41,7 @@ def uploadPage(request):
         return render(request, "upload.html", {'choice': Input.choices})
     if request.method == "POST" and (request.FILES.get('video') is not None):
         ownerName = request.POST['ownerName']
-        video = request.FILES['video']
+        video = request.FILES.get('video')
         location = request.POST['location']
         intersection_name = request.POST['intersection_name'] if request.POST.get(
             'intersection_name') is not None else ''
@@ -58,10 +63,37 @@ def uploadPage(request):
         else:
             intersection = createIntersection(intersection_name)
 
+        # Generate a unique identifier using the uuid module
+        unique_id = str(uuid.uuid4())[:8]
+    
+        # Append the unique identifier to the video name
+        video_name = f"{video.name.split('.')[0]}_{unique_id}.mp4"
+
+
+        # new code open cv
+        video_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', video_name)
+        
+        with open(video_path, 'wb') as f:
+            for chunk in video.chunks():
+                f.write(chunk)
+
+        cap = cv2.VideoCapture(video_path)
+        success, image = cap.read()
+        print(success)
+
+
+        if success:
+            image_name = f"{video_name}.jpg"
+            image_path = os.path.join(settings.MEDIA_ROOT, 'uploads/images',  image_name)
+            cv2.imwrite(image_path, image)
+        else:
+            print("faill to upload")
+     
         input = Input.objects.create(
             time_record=time,
             date_record=date,
-            video=video,
+            video=video_name,
+            image=f'uploads/images/{image_name}',
             intersection=intersection,
             location=location,
             traffic_status=traffic_status,
@@ -70,11 +102,14 @@ def uploadPage(request):
             ownerName=ownerName,
         
         )
+     
+                     
+        
 
-        result = call_detect.delay('./' + input.video.url, input.pk)
+        # result = call_detect.delay('./' + input.video.url, input.pk)
 
         # return HttpResponseRedirect(reverse('createLoop'))
-        return render(request, "loop.html", {'id': input.pk})
+        return render(request, "loop.html", {'id': input.pk, 'input': input})
     else:
         return render(request, "upload.html")
 

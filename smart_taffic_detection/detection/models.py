@@ -30,6 +30,7 @@ class Input(models.Model):
     # time_record =models.DateTimeField(auto_now_add=True, default=timezone.now)
     date_record = models.DateField('date', default=datetime.now, null=True)
     video = models.FileField(upload_to='uploads/video', blank=True)
+    image = models.FileField(upload_to='uploads/images', blank=True, null=True)
     location = models.TextField(max_length=9999, default="", null=True)
     traffic_status = models.IntegerField(
         default=0, null=True, validators=[MinValueValidator(0)])
