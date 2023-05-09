@@ -82,15 +82,24 @@ def uploadPage(request):
 
         cap = cv2.VideoCapture(video_path)
         success, image = cap.read()
-
+        
         if success:
             image_name = f"{video_name}.png"
-            image_path = os.path.join(settings.MEDIA_ROOT, 'uploads/images',  image_name)
-            plt.imshow(image)
-            plt.savefig(image_path)
+            image_path = os.path.join(settings.MEDIA_ROOT, 'uploads/images', image_name)
+            
+            cv2.imwrite(image_path, image) # Save default image
+            
+            # Rescale the image and save it with a different name
+            image_rescaled = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
+            image_name_scale = f"{video_name}_scale.png"
+            image_path_scale = os.path.join(settings.MEDIA_ROOT, 'uploads/images', image_name_scale)
+            
+            plt.imshow(image_rescaled)
+            plt.savefig(image_path_scale) # Save rescaled image using matplotlib
+            
         else:
             print("fail to upload")
-        
+            
 
         input = Input.objects.create(
             time_record=time,
