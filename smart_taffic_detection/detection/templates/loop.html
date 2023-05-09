@@ -7,6 +7,12 @@
     <form action="{% url 'createLoop' id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <p>
+            <center>
+                <img style="width: 400px;" src="{{ input.image.url }}" />
+                <p>location: {{ input.location }}</p>
+            </center>
+              
+               
             <label>loop name</label>
             <input class="input" type="text" name="loopName" required style="margin-left: 10px;" />
         </p>

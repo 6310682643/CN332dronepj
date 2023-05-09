@@ -18,6 +18,8 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
+
+import matplotlib.pyplot as plt
 # from celery.result import AsyncResult
 # from django.http import JsonResponse
 # Create your views here.
@@ -77,18 +79,19 @@ def uploadPage(request):
             for chunk in video.chunks():
                 f.write(chunk)
 
+
         cap = cv2.VideoCapture(video_path)
         success, image = cap.read()
-        print(success)
-
 
         if success:
-            image_name = f"{video_name}.jpg"
+            image_name = f"{video_name}.png"
             image_path = os.path.join(settings.MEDIA_ROOT, 'uploads/images',  image_name)
-            cv2.imwrite(image_path, image)
+            plt.imshow(image)
+            plt.savefig(image_path)
         else:
-            print("faill to upload")
-     
+            print("fail to upload")
+        
+
         input = Input.objects.create(
             time_record=time,
             date_record=date,
