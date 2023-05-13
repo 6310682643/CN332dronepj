@@ -56,6 +56,33 @@ class Result(models.Model):
         return f"{self.video}"
 
 class CreateLoop(models.Model):
-    loopName = models.CharField(max_length=999, default="")
-    x = models.IntegerField(default=0, null=True)
-    y = models.IntegerField(default=0, null=True)
+    loopName1 = models.CharField(max_length=999, default="")
+    x1 = models.IntegerField(default=0, null=True)
+    y1 = models.IntegerField(default=0, null=True)
+    width1 = models.IntegerField(default=0, null=True)
+    height1 = models.IntegerField(default=0, null=True)
+    angle1 = models.IntegerField(default=0, null=True)
+    summary_location = models.JSONField(null=True, blank=True)
+
+    loopName2 = models.CharField(max_length=999, default="")
+    x2 = models.IntegerField(default=0, null=True)
+    y2 = models.IntegerField(default=0, null=True)
+    width2 = models.IntegerField(default=0, null=True)
+    height2 = models.IntegerField(default=0, null=True)
+    angle2 = models.IntegerField(default=0, null=True)
+
+    loopName3 = models.CharField(max_length=999, default="")
+    x3 = models.IntegerField(default=0, null=True)
+    y3 = models.IntegerField(default=0, null=True)
+    width3 = models.IntegerField(default=0, null=True)
+    height3 = models.IntegerField(default=0, null=True)
+    angle3 = models.IntegerField(default=0, null=True)
+
+    loopName4 = models.CharField(max_length=999, default="")
+    # points4 = models.JSONField(default=[], null=True)
+    x4 = models.IntegerField(default=0, null=True)
+    y4 = models.IntegerField(default=0, null=True)
+    # orientation4 = models.CharField(max_length=20, default="")
+    width4 = models.IntegerField(default=0, null=True)
+    height4 = models.IntegerField(default=0, null=True)
+    angle4 =models.IntegerField(default=0, null=True)

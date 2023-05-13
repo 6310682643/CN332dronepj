@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="title"> Edit Loop </h1>
+
+<div class="form-create">
+    <form id="form1" action="{% url 'edit_loop' loop.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- loop1 -->
+        <p>
+            <center>
+                <img style="width: 350px;" src="{{ input.image_scale.url }}" />
+            </center> 
+              
+            <h2>Loop 1</h2>
+            <label>Loop name</label>
+            <p><input class="input" type="text" name="loopName1" value="{{ loop.loopName1 }}" required style="margin-left: 10px;" /></p>
+        <p>
+            <label>x</label>
+            <input class="input" type="text" name="x1" value="{{ loop.x1 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>y</label>
+            <input class="input" type="text" name="y1" value="{{ loop.y1 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>width</label>
+            <input class="input" type="text" name="width1" value="{{ loop.width1 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>height</label>
+            <input class="input" type="text" name="height1" value="{{ loop.height1 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>Angle</label>
+            <input class="input" type="text" name="angle1" value="{{ loop.angle1 }}" required style="margin-left: 10px;" />
+        </p>
+
+
+        <!-- loop2 -->
+        <p style="margin-top: 100px;">
+            <h2>Loop 2</h2>
+            <label>Loop name</label>
+            <input class="input" type="text" name="loopName2" value="{{ loop.loopName2 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+          <label>x</label>
+          <input class="input" type="text" name="x2" value="{{ loop.x2 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>y</label>
+            <input class="input" type="text" name="y2" value="{{ loop.y2 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>width</label>
+            <input class="input" type="text" name="width2" value="{{ loop.width2 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>height</label>
+            <input class="input" type="text" name="height2" value="{{ loop.height2 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>Angle</label>
+            <input class="input" type="text" name="angle2" value="{{ loop.angle2 }}" required style="margin-left: 10px;" />
+        </p>
+
+        <!-- loop3 -->
+        <p style="margin-top: 100px;">
+            <h2>Loop 3</h2>
+            <label>Loop name</label>
+            <input class="input" type="text" name="loopName3" value="{{ loop.loopName3 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+          <label>x</label>
+          <input class="input" type="text" name="x3" value="{{ loop.x3 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>y</label>
+            <input class="input" type="text" name="y3" value="{{ loop.y3 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>width</label>
+            <input class="input" type="text" name="width3" value="{{ loop.width3 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>height</label>
+            <input class="input" type="text" name="height3" value="{{ loop.height3 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>Angle</label>
+            <input class="input" type="text" name="angle3" value="{{ loop.angle3 }}" required style="margin-left: 10px;" />
+        </p>
+
+        <!-- loop4 -->
+
+        <p style="margin-top: 100px;">
+            <h2>Loop 4</h2>
+            <label>Loop name</label>
+            <input class="input" type="text" name="loopName4" value="{{ loop.loopName4 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+          <label>x</label>
+          <input class="input" type="text" name="x4" value="{{ loop.x4 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>y</label>
+            <input class="input" type="text" name="y4" value="{{ loop.y4 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>width</label>
+            <input class="input" type="text" name="width4" value="{{ loop.width4 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>height</label>
+            <input class="input" type="text" name="height4" value="{{ loop.height4 }}" required style="margin-left: 10px;" />
+        </p>
+        <p>
+            <label>Angle</label>
+            <input class="input" type="text" name="angle4" value="{{ loop.angle4 }}" required style="margin-left: 10px;" />
+        </p>
+
+        <p style="display: inline;">
+            <input class="button-submit" type="submit" value="Submit" /> 
+            <!-- <button class="button-submit" type="submit">
+                <a href="{% url 'preview' %}"style="color: #ffff; text-decoration: none; ">Save</a>
+            </button> -->
+            <button class="button-cancle">
+                <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
+            </button>
+        </p>   
+
+    </form>
+</div>]
+
+
+<script>
+    const optionAngles = document.querySelectorAll(".select-angle"),
+        selectBtns = document.querySelectorAll(".select-btn"),
+        optionLists = document.querySelectorAll(".options"),
+        sBtnTexts = document.querySelectorAll(".sBtn-text");
+
+    selectBtns.forEach((selectBtn, index) => {
+        selectBtn.addEventListener("click", () => optionAngles[index].classList.toggle("active"));
+
+        optionLists[index].querySelectorAll(".option").forEach(option => {
+            option.addEventListener("click", () => {
+                let selectedOption = option.querySelector(".option-angle").innerText;
+                sBtnTexts[index].innerText = selectedOption;
+                optionAngles[index].classList.remove("active");
+            })
+        })
+    });
+</script>
+
+
+
+{% endblock %}

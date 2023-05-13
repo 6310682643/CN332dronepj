@@ -25,6 +25,8 @@ urlpatterns = [
     path('upload/', views.uploadPage, name="uploadPage"),
     path('generalInfo/<int:id>', views.generalInfo, name='generalInfo'),
     path('createLoop/<int:id>', views.createLoop, name='createLoop'),
+    path("edit_loop/<int:id>", views.edit_loop, name='edit_loop'),
+    path('preview/', views.preview, name='preview'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
