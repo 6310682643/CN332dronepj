@@ -106,6 +106,7 @@ def uploadPage(request):
             date_record=date,
             video=video_name,
             image=f'uploads/images/{image_name}',
+            image_scale=f'uploads/images/{image_name_scale}',
             intersection=intersection,
             location=location,
             traffic_status=traffic_status,
