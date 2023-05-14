@@ -6,24 +6,106 @@ body {
     background-color: #F2F2F0;
 }
 
+.title {
+    padding-top: 50px;
+}
+
+/* loop.html - angle */
+
+.select-angle {
+    width: 380px;
+}
+
+.select-angle .select-btn {
+    display: flex;
+    height: 40px;
+    background: #fff;
+    /* margin-bottom: 20px; */
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.select-btn i {
+    font-size: 25px;
+    transition: 0.2s;
+}
+
+.select-angle.active .select-btn i {
+    transform: rotate(-180deg);
+}
+
+.select-angle.active .options {
+    display: block;
+}
+
+.select-angle .options {
+    position: absolute;
+    width: 380px;
+    padding: 20px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.options .option {
+    display: flex;
+    height: 40px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+
+.options .option:hover {
+    background: #f2f2f2;
+}
+
+.option .option-angle {
+    font-size: 18px;
+    color: #333;
+}
+/* End Angle */
+
 .button-submit {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     background-color: #1976D2;
-    border: 5px solid #1976D2;
+    border: 2px solid #1976D2;
     border-radius: 15px;
-    margin-left: 35%;
-
-
+    margin-left: 40%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    width: 8rem;
+    height: 2rem;
 }
 
 .button-cancle {
     font-family: 'Poppins', sans-serif;
     background-color: #E53935;
-    border: 5px solid #E53935;
     border-radius: 15px;
     margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
 }
+
+.button-submit:hover{
+    background: #6db7f8;
+    border: none;
+}
+
+
 
 .container {
     padding: 5%;
@@ -53,6 +135,29 @@ body {
     background-color: #ffffff;
     margin: 0 auto;
     padding: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff;
+    border-radius: 30px;
+    margin-bottom: 100px;
+    flex-direction: column;
+    box-shadow: 0px 0px 18px 2px rgba(0, 0, 0, 0.1);
+}
+
+.loopname {
+    display: inline;
+    padding-top: 30px;
+    
+}
+
+.form-create {
+    max-width: 800px;
+    /* height: 960px; */
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    margin: 0 auto;
+    padding: 30px;
     justify-content: center;
     align-items: center;
     border: 1px solid #ffffff;

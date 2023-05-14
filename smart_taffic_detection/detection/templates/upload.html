@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1>Upload</h1>
+<h1 class="title">Upload</h1>
 <div class="form-upload">
     <form action="{% url 'uploadPage' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}

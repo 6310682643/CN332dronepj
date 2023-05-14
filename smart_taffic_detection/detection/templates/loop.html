@@ -3,125 +3,212 @@
 {% load static %}
 
 {% block content %}
-<h1> Create Loop</h1>
-<div class="form-create">
-    <form action="{% url 'createLoop' id %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p>
-            <center>
-                <img style="width: 350px;" src="{{ input.image_scale.url }}" />
-            </center>  
-        </p>
-        <p>
-            <h2>Loop 1</h2>
-            <label>loop name</label>
-            <input class="input" type="text" name="loopName1" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>X</label>
-            <input class="input" type="text" name="x1" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>Y</label>
-            <input class="input" type="text" name="y1" required style="margin-left: 10px;" />
+<h1 class="title"> Create Loop</h1>
+<form action="{% url 'createLoop' id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+        <center>
+            <img style="width: 960px;" src="{{ input.image_scale.url }}" />
+        </center>  
+    </p>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-create">
+                <p>
+                    <!-- loop1 -->
+                    <h2>Loop 1</h2>
+                    <div class="loopname">
+                        <label>loop name</label>
+                        <input class="input" type="text" name="loopName1" required style="margin-left: 10px;" />
+                    </div>
+                    
+                </p>
+                <p>
+                    <label>X</label>
+                    <input class="input" type="text" name="x1" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>Y</label>
+                    <input class="input" type="text" name="y1" required style="margin-left: 10px;" />
+                    
+                </p>
+                <p>
+                    <label>width</label>
+                    <input class="input" type="text" name="width1" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>height</label>
+                    <input class="input" type="text" name="height1" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>angle</label>
+                    <input class="input" type="text" name="angle1" required style="margin-left: 10px;" />
+                </p> 
+            </div>
+        </div>   
+
+        <div class="col-6">
+            <div class="form-create">
+                <!-- loop2 -->
+                <p>
+                    <h2>Loop 2</h2>
+                    <div class="loopname">
+                        <label>Loop name</label>
+                        <input class="input" type="text" name="loopName2" required style="margin-left: 10px;" />
+                    </div>
+                </p>
+                <p>
+                    <label>X</label>
+                    <input class="input" type="text" name="x2" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>Y</label>
+                    <input class="input" type="text" name="y2" required style="margin-left: 10px;" />
+                    
+                </p>
+                <p>
+                    <label>width</label>
+                    <input class="input" type="text" name="width2" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>height</label>
+                    <input class="input" type="text" name="height2" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>angle</label>
+                    <input class="input" type="text" name="angle2" required style="margin-left: 10px;" />
+                </p>
+            </div>
+        </div>
+        <div class="col-6">
+            <!-- loop3 -->
+            <div class="form-create">
+                <p>
+                    <h2>Loop 3</h2>
+                    <div class="loopname">
+                        <label>Loop name</label>
+                        <input class="input" type="text" name="loopName3" required style="margin-left: 10px;" />
+                    </div>
+                    
+                </p>
+                <p>
+                    <label>X</label>
+                    <input class="input" type="text" name="x3" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>Y</label>
+                    <input class="input" type="text" name="y3" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>width</label>
+                    <input class="input" type="text" name="width3" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>height</label>
+                    <input class="input" type="text" name="height3" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>angle</label>
+                    <input class="input" type="text" name="angle3" required style="margin-left: 10px;" />
+                </p>
+            </div>
+        </div>
+        <div class="col-6">
+            <!-- loop4 -->
+            <div class="form-create">
+                <p>
+                    <h2>Loop 4</h2>
+                    <div class="loopname">
+                        <label>Loop name</label>
+                        <input class="input" type="text" name="loopName4" required style="margin-left: 10px;" />
+                    </div>
+                </p>
+                <p>
+                    <label>X</label>
+                    <input class="input" type="text" name="x4" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>Y</label>
+                    <input class="input" type="text" name="y4" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>width</label>
+                    <input class="input" type="text" name="width4" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>height</label>
+                    <input class="input" type="text" name="height4" required style="margin-left: 10px;" />
+                </p>
+                <p>
+                    <label>angle</label>
+                    <input class="input" type="text" name="angle4" required style="margin-left: 10px;" />
+                </p>
+            </div>
+        </div>
+    </div>
             
-        </p>
-        <p>
-            <label>width</label>
-            <input class="input" type="text" name="width1" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>height</label>
-            <input class="input" type="text" name="height1" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>angle</label>
-            <input class="input" type="text" name="angle1" required style="margin-left: 10px;" />
-        </p>
-
-        <!-- loop2 -->
-        <p style="margin-top: 100px;">
-            <h2>Loop 2</h2>
-            <label>Loop name</label>
-            <input class="input" type="text" name="loopName2" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>X</label>
-            <input class="input" type="text" name="x2" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>Y</label>
-            <input class="input" type="text" name="y2" required style="margin-left: 10px;" />
-            
-        </p>
-        <p>
-            <label>width</label>
-            <input class="input" type="text" name="width2" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>height</label>
-            <input class="input" type="text" name="height2" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>angle</label>
-            <input class="input" type="text" name="angle2" required style="margin-left: 10px;" />
-        </p>
-
-        <!-- loop3 -->
-        <p style="margin-top: 100px;">
-            <h2>Loop 3</h2>
-            <label>Loop name</label>
-            <input class="input" type="text" name="loopName3" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>X</label>
-            <input class="input" type="text" name="x3" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>Y</label>
-            <input class="input" type="text" name="y3" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>width</label>
-            <input class="input" type="text" name="width3" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>height</label>
-            <input class="input" type="text" name="height3" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>angle</label>
-            <input class="input" type="text" name="angle3" required style="margin-left: 10px;" />
-        </p>
-    
-
-        <!-- loop4 -->
-
-        <p style="margin-top: 100px;">
-            <h2>Loop 4</h2>
-            <label>Loop name</label>
-            <input class="input" type="text" name="loopName4" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>X</label>
-            <input class="input" type="text" name="x4" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>Y</label>
-            <input class="input" type="text" name="y4" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>width</label>
-            <input class="input" type="text" name="width4" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>height</label>
-            <input class="input" type="text" name="height4" required style="margin-left: 10px;" />
-        </p>
-        <p>
-            <label>angle</label>
-            <input class="input" type="text" name="angle4" required style="margin-left: 10px;" />
-        </p>
+        <!-- <p>
+            <label>Angle</label>
+            <div class="select-angle" name="angle4" required>
+                <div class="select-btn">
+                    <span class="sBtn-text"> Select an option </span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <ul class="options">
+                    <li class="option">
+                        <input name="angle4" value="0">
+                        <span class="option-angle">0&deg;</span>
+                    </li>
+                    <li class="option">
+                        <input name="angle4" value="30">
+                        <span class="option-angle">30&deg;</span>
+                    </li>
+                    <li class="option">
+                        <input name="angle4" value="45">
+                        <span class="option-angle">45&deg;</span>
+                    </li>
+                    <li class="option">
+                        <input name="angle4" value="60">
+                        <span class="option-angle">60&deg;</span>
+                    </li>
+                    <li class="option">
+                        <input name="angle4" value="90">
+                        <span class="option-angle">90&deg;</span>
+                    </li>
+                </ul>
+            </div>
+        </p> -->
+        <!-- <p>
+            <div class="select-angle" required style="margin-left: 10px;">
+                <div class="select-btn">
+                    <span class="sBtn-text"> Select an option </span>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <ul class="options">
+                    <li class="option">
+                        <input type="radio" name="angle4" value="0" id="angle4_0" required>
+                        <label for="angle4_0"><span class="option-angle">0&deg;</span></label>
+                    </li>
+                    <li class="option">
+                        <input type="radio" name="angle4" value="30" id="angle4_30">
+                        <label for="angle4_30"><span class="option-angle">30&deg;</span></label>
+                    </li>
+                    <li class="option">
+                        <input type="radio" name="angle4" value="45" id="angle4_45">
+                        <label for="angle4_45"><span class="option-angle">45&deg;</span></label>
+                    </li>
+                    <li class="option">
+                        <input type="radio" name="angle4" value="60" id="angle4_60">
+                        <label for="angle4_60"><span class="option-angle">60&deg;</span></label>
+                    </li>
+                    <li class="option">
+                        <input type="radio" name="angle4" value="90" id="angle4_90">
+                        <label for="angle4_90"><span class="option-angle">90&deg;</span></label>
+                    </li>
+                </ul>
+            </div>
+        </p> -->
+        
         
         <p style="display: inline; margin-top: 30px;">
             <input class="button-submit" type="submit" value="Preview" />
@@ -131,4 +218,23 @@
         </p>   
     </form>
 </div>
+
+<script>
+    const optionAngles = document.querySelectorAll(".select-angle"),
+        selectBtns = document.querySelectorAll(".select-btn"),
+        optionLists = document.querySelectorAll(".options"),
+        sBtnTexts = document.querySelectorAll(".sBtn-text");
+
+    selectBtns.forEach((selectBtn, index) => {
+        selectBtn.addEventListener("click", () => optionAngles[index].classList.toggle("active"));
+
+        optionLists[index].querySelectorAll(".option").forEach(option => {
+            option.addEventListener("click", () => {
+                let selectedOption = option.querySelector(".option-angle").innerText;
+                sBtnTexts[index].innerText = selectedOption;
+                optionAngles[index].classList.remove("active");
+            })
+        })
+    });
+</script>
 {% endblock %}

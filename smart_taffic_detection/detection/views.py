@@ -328,7 +328,8 @@ def edit_loop(request, id):
 
 def preview(request):
     loop = CreateLoop.objects.all()
-    return render(request, 'preview.html', {'loop': loop, })
+    task = Input.objects.all()
+    return render(request, 'preview.html', {'loop': loop, 'task': task})
 
 def uploadPage(request):
     print(timezone.now().strftime('%H:%M:%S.%f')[:-3])
