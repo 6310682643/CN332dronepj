@@ -5,6 +5,8 @@ def edit_status(status, id):
     input.detect_status = status
     input.save()
 
+import matplotlib.patches as patches
+from PIL import Image
 from .task import call_detect
 from django.shortcuts import render, redirect
 from django.conf import settings
@@ -227,6 +229,7 @@ def createLoop(request, id):
             loopName4=loopName4, x4=x4, y4=y4, width4=width4, height4=height4,angle4=angle4,
             )
         loop.save()
+        select_draw(f'{fileName}.txt' , id)
         return redirect('preview')
     
     return render(request, 'loop.html')
@@ -503,9 +506,6 @@ def uploadPage(request):
         
         )
      
-                     
-        
-
         # result = call_detect.delay('./' + input.video.url, input.pk)
 
         # return HttpResponseRedirect(reverse('createLoop'))
@@ -593,5 +593,196 @@ def generalInfo(request, id):
     input = Input.objects.filter(pk=id).get()
     result = Result.objects.filter(input_video_id=input.pk).first()
     return render(request, 'generalInfo.html', {'result': result, 'input': input})
+
+def drawOneLoop(loop1,id):
+        name = uploadPage.objects.get(id=id)
+        image_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', f'{name.video_name}')
+        image_name =  (f'{name.video_name}.jpg')
+        image_name_draw = (f'{name.video_name}_drawed.jpg')
+        drawing_image = np.array(Image.open(name.image_name))
+        plt.imshow(drawing_image)
+        plt.gca().add_patch(
+                plt.Rectangle([loop1[0],loop1[1]],
+                            loop1[2],loop1[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop1[4],
+                            alpha=1)
+                )
+
+        #ใส่ชื่อไฟล์แทนคำว่า "video_name"
+        plt.savefig("../media/uploads/images", f'{image_name_draw}')
+        return print("drawOneLoop Finish")
+def drawTwoLoop(loop1,loop2,id):
+        name = uploadPage.objects.get(id=id)
+        image_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', f'{name.video_name}')
+        image_name =  (f'{name.video_name}.jpg')
+        image_name_draw = (f'{name.video_name}_drawed.jpg')
+        drawing_image = np.array(Image.open(image_name))
+        plt.imshow(drawing_image)
+        plt.gca().add_patch(
+                plt.Rectangle([loop1[0],loop1[1]],
+                            loop1[2],loop1[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop1[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop2[0],loop2[1]],
+                            loop2[2],loop2[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop2[4],
+                            alpha=1)
+                )
+
+        #ใส่ชื่อไฟล์แทนคำว่า "video_name"
+        plt.savefig("../media/uploads/images", f'{image_name_draw}')
+        return print("drawTwoLoop Finish")
+
+def drawThreeLoop(loop1,loop2,loop3,id):
+        name = uploadPage.objects.get(id=id)
+        image_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', f'{name.video_name}')
+        image_name =  (f'{name.video_name}.jpg')
+        image_name_draw = (f'{name.video_name}_drawed.jpg')
+        drawing_image = np.array(Image.open(image_name))
+        plt.imshow(drawing_image)
+        plt.gca().add_patch(
+                plt.Rectangle([loop1[0],loop1[1]],
+                            loop1[2],loop1[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop1[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop2[0],loop2[1]],
+                            loop2[2],loop2[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop2[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop3[0],loop3[1]],
+                            loop3[2],loop3[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop3[4],
+                            alpha=1)
+                )
+
+        #ใส่ชื่อไฟล์แทนคำว่า "video_name"
+        plt.savefig("../media/uploads/images", f'{image_name_draw}')
+        return print("drawThreeLoop Finish")
+
+def drawFourLoop(loop1,loop2,loop3,loop4,id):
+        name = uploadPage.objects.get(id=id)
+        print(f'{name.video_name}')
+        image_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', f'{name.video_name}')
+        image_name =  (f'{name.video_name}')
+        image_name_draw = (f'{name.video_name}_drawed.jpg')
+        drawing_image = np.array(Image.open(image_name))
+        plt.imshow(drawing_image)
+        plt.gca().add_patch(
+                plt.Rectangle([loop1[0],loop1[1]],
+                            loop1[2],loop1[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop1[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop2[0],loop2[1]],
+                            loop2[2],loop2[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop2[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop3[0],loop3[1]],
+                            loop3[2],loop3[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop3[4],
+                            alpha=1)
+                )
+        plt.gca().add_patch(
+                plt.Rectangle([loop4[0],loop4[1]],
+                            loop4[2],loop4[3],
+                            fill=False,
+                            color='blue',
+                            angle = loop4[4],
+                            alpha=1)
+                )
+        plt.savefig("../media/uploads/images", f'{image_name_draw}')
+        return print("drawFourLoop Finish")
+
+def select_draw(request,id):
+    name = CreateLoop.objects.get(id=id)
+    text_file_path = os.path.join('exports' , f'{name.fileName}.txt')     
+    with open(text_file_path, 'r') as f:
+        line_count = len(f.readlines())
+        f.close()
+    with open(text_file_path, 'r') as f:
+        if line_count == 1:
+            lines = f.readlines()  # อ่านข้อมูลจากไฟล์เป็นสตริง
+            data_first_line = lines[0].strip().split(',')  # แยกค่าข้อมูลในบรรทัดเป็น list สตริง
+            data_float1 = [float(d) for d in data_first_line]  # แปลงค่าใน list เป็นตัวเลข float
+            data_float1 = data_float1[:-1] + [-data_float1[-1]]
+            loop1 = data_float1
+            drawOneLoop(loop1,id)
+        elif line_count == 2:
+            lines = f.readlines()  # อ่านข้อมูลจากไฟล์เป็นสตริง
+            data_first_line = lines[0].strip().split(',')  # แยกค่าข้อมูลในบรรทัดเป็น list สตริง
+            data_float1 = [float(d) for d in data_first_line]  # แปลงค่าใน list เป็นตัวเลข float
+            data_float1 = data_float1[:-1] + [-data_float1[-1]]
+            data_second_line = lines[1].strip().split(',')  
+            data_float2 = [float(d) for d in data_second_line] 
+            loop1 , loop2 = data_float1 , data_float2
+            drawTwoLoop(loop1,loop2,id)
+        elif line_count == 3:
+            lines = f.readlines()  # อ่านข้อมูลจากไฟล์เป็นสตริง
+            data_first_line = lines[0].strip().split(',')  # แยกค่าข้อมูลในบรรทัดเป็น list สตริง
+            data_float1 = [float(d) for d in data_first_line]  # แปลงค่าใน list เป็นตัวเลข float
+            data_float1 = data_float1[:-1] + [-data_float1[-1]]
+            data_second_line = lines[1].strip().split(',')  
+            data_float2 = [float(d) for d in data_second_line] 
+            data_third_line = lines[2].strip().split(',')  
+            data_float3 = [float(d) for d in data_third_line]  
+            data_float3 = data_float3[:-1] + [-data_float3[-1]]
+            loop1 , loop2 , loop3  = data_float1 ,data_float2 ,data_float3
+            drawThreeLoop(loop1,loop2,loop3,id)
+        elif line_count == 4:
+            lines = f.readlines()  # อ่านข้อมูลจากไฟล์เป็นสตริง
+            data_first_line = lines[0].strip().split(',')  # แยกค่าข้อมูลในบรรทัดเป็น list สตริง
+            data_float1 = [float(d) for d in data_first_line]  # แปลงค่าใน list เป็นตัวเลข float
+            data_float1 = data_float1[:-1] + [-data_float1[-1]]
+            data_second_line = lines[1].strip().split(',')  
+            data_float2 = [float(d) for d in data_second_line] 
+            data_third_line = lines[2].strip().split(',')  
+            data_float3 = [float(d) for d in data_third_line]  
+            data_float3 = data_float3[:-1] + [-data_float3[-1]]
+            data_fourth_line = lines[3].strip().split(',')  
+            data_float4 = [float(d) for d in data_fourth_line]  
+            loop1 , loop2 , loop3 , loop4  = data_float1 ,data_float2 ,data_float3 ,data_float4
+            drawFourLoop(loop1,loop2,loop3,loop4,id)
+        elif line_count > 4:
+            lines = f.readlines()
+            data_first_line = lines[0].strip().split(',')  # แยกค่าข้อมูลในบรรทัดเป็น list สตริง
+            data_float1 = [float(d) for d in data_first_line]  # แปลงค่าใน list เป็นตัวเลข float
+            data_float1 = data_float1[:-1] + [-data_float1[-1]]
+            data_second_line = lines[1].strip().split(',')  
+            data_float2 = [float(d) for d in data_second_line] 
+            data_third_line = lines[2].strip().split(',')  
+            data_float3 = [float(d) for d in data_third_line]
+            data_float3 = data_float3[:-1] + [-data_float3[-1]]
+            data_fourth_line = lines[3].strip().split(',')  
+            data_float4 = [float(d) for d in data_fourth_line]  
+            loop1 , loop2 , loop3 , loop4 = data_float1 ,data_float2 ,data_float3 ,data_float4
+            drawFourLoop(loop1,loop2,loop3,loop4,id)
+    f.close()
 
 
