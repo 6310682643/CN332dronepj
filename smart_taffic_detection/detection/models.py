@@ -56,6 +56,8 @@ class Result(models.Model):
         return f"{self.video}"
 
 class CreateLoop(models.Model):
+    fileName = models.CharField(max_length=999, default="")
+    
     loopName1 = models.CharField(max_length=999, default="")
     x1 = models.IntegerField(default=0, null=True)
     y1 = models.IntegerField(default=0, null=True)

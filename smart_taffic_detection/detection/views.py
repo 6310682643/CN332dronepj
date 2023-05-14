@@ -31,6 +31,8 @@ import matplotlib.pyplot as plt
 
 def createLoop(request, id):
     if request.method == 'POST':
+        fileName = request.POST['fileName']
+
         loopName1 = request.POST['loopName1']
         x1 = request.POST['x1']
         y1 = request.POST['y1']
@@ -202,7 +204,7 @@ def createLoop(request, id):
         }
 
         # Write the JSON data to a file
-        json_file_path = os.path.join(directory, f'{loopName1}.json')
+        json_file_path = os.path.join(directory, f'{fileName}.json')
         with open(json_file_path, 'w') as json_file:
             json.dump(json_data, json_file)
         
@@ -211,7 +213,7 @@ def createLoop(request, id):
         shutil.copyfile(json_file_path, json_copy_path)
 
         # Write the formatted data to a text file
-        text_file_path = os.path.join(directory, f'{loopName1}.txt')
+        text_file_path = os.path.join(directory, f'{fileName}.txt')
         with open(text_file_path, 'w') as f:
             f.write(f'{x1}, {y1}, {width1}, {height1}, {angle1}\n')
             f.write(f'{x2}, {y2}, {width2}, {height2}, {angle2}\n')
@@ -219,7 +221,7 @@ def createLoop(request, id):
             f.write(f'{x4}, {y4}, {width4}, {height4}, {angle4}\n')
 
         loop = CreateLoop(
-            loopName1=loopName1, x1=x1, y1=y1, width1=width1, height1=height1,angle1=angle1,
+            fileName = fileName, loopName1=loopName1, x1=x1, y1=y1, width1=width1, height1=height1,angle1=angle1,
             loopName2=loopName2, x2=x2, y2=y2, width2=width2, height2=height2,angle2=angle2,
             loopName3=loopName3, x3=x3, y3=y3, width3=width3, height3=height3,angle3=angle3,
             loopName4=loopName4, x4=x4, y4=y4, width4=width4, height4=height4,angle4=angle4,
@@ -233,6 +235,8 @@ def edit_loop(request, id):
     loop = CreateLoop.objects.get(id=id)
 
     if request.method == 'POST':
+        loop.fileName = request.POST.get('fileName')
+
         loop.loopName1 = request.POST.get('loopName1')
         loop.x1 = request.POST.get('x1')
         loop.y1 = request.POST.get('y1')
@@ -395,12 +399,12 @@ def edit_loop(request, id):
 
         loop.save()
 
-        file_path = os.path.join('exports', f'{loop.loopName1}.json')
+        file_path = os.path.join('exports', f'{loop.fileName}.json')
         with open(file_path, 'w') as f:
             json.dump(data, f)
             
 
-        text_file_path = os.path.join('exports', f'{loop.loopName1}.txt')
+        text_file_path = os.path.join('exports', f'{loop.fileName}.txt')
         with open(text_file_path, 'w') as f:
             f.write(f'{loop.x1}, {loop.y1}, {loop.width1}, {loop.height1}, {loop.angle1}\n')
             f.write(f'{loop.x2}, {loop.y2}, {loop.width2}, {loop.height2}, {loop.angle2}\n')
