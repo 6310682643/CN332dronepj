@@ -160,7 +160,7 @@ def createLoop(request, id):
                         {"x": int(xbl1), "y": int(ybl1)}
                     ],
                     'orientation': "counterclockwise",
-                    "summary_location":{"x":int(x1),"y":int(y1)},
+                    "summary_location":{"x":int(x1),"y":f"{y1}"},
                 },
                 {
                     'name': loopName2,
@@ -172,7 +172,7 @@ def createLoop(request, id):
                         {"x": int(xbl2), "y": int(ybl2)}
                     ],
                     'orientation': "clockwise",
-                    "summary_location":{"x":int(x2),"y":int(y2)},
+                    "summary_location":{"x":int(x2),"y":f"{y2}"},
                 },
                 {
                     'name': loopName3,
@@ -184,7 +184,7 @@ def createLoop(request, id):
                         {"x": int(xbl3), "y": int(ybl3)}
                     ],
                     'orientation': "clockwise",
-                    "summary_location":{"x":int(x3),"y":int(y3)},
+                    "summary_location":{"x":int(x3),"y":f"{y3}"},
                 },
                 {
                     'name': loopName4,
@@ -196,7 +196,7 @@ def createLoop(request, id):
                         {"x": int(xbl4), "y": int(ybl4)}
                     ],
                     'orientation': "clockwise",
-                    "summary_location":{"x":int(x4),"y":int(y4)},
+                    "summary_location":{"x":int(x4),"y":f"{y4}"},
                 },
             ]
         }
@@ -351,7 +351,7 @@ def edit_loop(request, id):
                         {"x": int(xbl1), "y": int(ybl1)}
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":int(x1),"y":int(y1)},
+                    "summary_location":{"x":int(x1),"y":f"{y1}"},
                 },
                 {
                     'name': loop.loopName2,
@@ -363,7 +363,7 @@ def edit_loop(request, id):
                         {"x": int(xbl2), "y": int(ybl2)}
                     ],
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x2),"y":int(y2)},
+                    "summary_location":{"x":int(x2),"y":f"{y2}"},
                 },
                 {
                     'name': loop.loopName3,
@@ -376,7 +376,7 @@ def edit_loop(request, id):
                     ],
             
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x3),"y":int(y3)},
+                    "summary_location":{"x":int(x3),"y":f"{y3}"},
                 },
                 {
                     'name': loop.loopName4,
@@ -388,7 +388,7 @@ def edit_loop(request, id):
                         {"x": int(xbl4), "y": int(ybl4)}
                     ],
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x4),"y":int(y4)},
+                    "summary_location":{"x":int(x4),"y":f"{y4}"},
                 },
             ]
         }
