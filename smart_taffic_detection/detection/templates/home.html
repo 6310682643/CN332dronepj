@@ -49,11 +49,12 @@
         {% endif %}
         <td>{{ task.date_upload }}</td>
         <td>{{ task.ownerName}}</td>
-        <td><a class="btn btn-outline-secondary" style="width: 82px; height: 37px;"
+        <td><a class="btn btn-outline-secondary" style="width: 94px; height: 38px;"
             href="{% url 'edit' task.id %}">Edit</a>
-          <a class="btn btn-outline-info" style="width: 82px; height: 37px;"
+          <a class="btn btn-outline-info" style="width: 94px; height: 38px;"
             href="{% url 'generalInfo' task.id %}">Detail</a><br>
-          <a class="btn btn-outline-danger" href="{% url 'delete' task.id %}">Delete</a>
+          <a class="btn btn-outline-success" href="{% url 'preview' %}">Preview</a><br>
+          <a class="btn btn-outline-danger" style="width: 94px; height: 38px;" href="{% url 'delete' task.id %}">Delete</a>
 
         </td>
         {%endfor%}

@@ -425,11 +425,10 @@ def edit_loop(request, id):
         plt.clf()
         select_draw(f'{loop.fileName}.txt' , id)
 
-        return HttpResponseRedirect(reverse('preview'))
     context = {
         'loop': loop,
         'id': loop.id,
-        'input': input
+        'input': input, 
     }
     return render(request, 'editLoop.html', context)
 
@@ -523,6 +522,10 @@ def uploadPage(request):
         return render(request, "loop.html", {'id': input.pk, 'input': input})
     else:
         return render(request, "upload.html")
+def detect(request, id):
+    input = Input.objects.get(id=id)
+    result = call_detect.delay('./' + input.video.url, input.pk)
+    return render(request, "home.html")
 
 # def celery_status(request, task_id):
 #     result = AsyncResult(task_id)

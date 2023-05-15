@@ -27,6 +27,7 @@ urlpatterns = [
     path('createLoop/<int:id>', views.createLoop, name='createLoop'),
     path("edit_loop/<int:id>", views.edit_loop, name='edit_loop'),
     path('preview/', views.preview, name='preview'),
+    path('detect/<int:id>', views.detect, name='detect'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
