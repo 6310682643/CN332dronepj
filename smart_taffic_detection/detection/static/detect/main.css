@@ -383,3 +383,14 @@ button {
     margin-top: -36px;
 
 }
+
+.button-detect {
+    font-family: 'Poppins', sans-serif;
+    background-color: green;
+    border-radius: 15px;
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 20px;
+    text-align: center;
+}
