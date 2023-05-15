@@ -4,7 +4,7 @@
 {% block content %}
 
 <h1 class="title" style="padding: 50px;"> Edit Loop </h1>
-<form id="form1" action="{% url 'edit_loop' loop.id %}" method="POST" enctype="multipart/form-data">
+<form id="form1" action="{% url 'edit_loop' input.id %}" method="POST" enctype="multipart/form-data">
     <center>
 
         <img style="width: 960px;" src="{{ input.image_draw.url }}" />
@@ -175,7 +175,7 @@
             <a href="{% url 'preview' %}"style="color: #ffff; text-decoration: none; ">Save</a>
         </button> -->
         <button class="button-cancle">
-            <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
+            <a href="{% url 'preview' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
         </button>
     </p>
 </form>

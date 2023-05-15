@@ -23,7 +23,8 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 # from celery.result import AsyncResult
 # from django.http import JsonResponse
@@ -229,40 +230,49 @@ def createLoop(request, id):
             loopName4=loopName4, x4=x4, y4=y4, width4=width4, height4=height4,angle4=angle4,
             )
         loop.save()
+        input = Input.objects.get(id=id)
+        input.loop = loop
+        input.save()
         select_draw(f'{fileName}.txt' , id)
         return redirect('preview')
     
     return render(request, 'loop.html')
 
 def edit_loop(request, id):
-    loop = CreateLoop.objects.get(id=id)
+    input = Input.objects.get(id=id)
+    loop = CreateLoop.objects.get(id=input.loop.pk)
 
     if request.method == 'POST':
-        loop.fileName = request.POST.get('fileName')
-
+        print("It post")
+        
         loop.loopName1 = request.POST.get('loopName1')
         loop.x1 = request.POST.get('x1')
         loop.y1 = request.POST.get('y1')
         loop.width1 = request.POST.get('width1')
         loop.height1 = request.POST.get('height1')
+        loop.angle1 = request.POST.get('angle1')
 
         loop.loopName2 = request.POST.get('loopName2')
         loop.x2 = request.POST.get('x2')
         loop.y2 = request.POST.get('y2')
         loop.width2 = request.POST.get('width2')
         loop.height2 = request.POST.get('height2')
+        loop.angle2 = request.POST.get('angle2')
 
         loop.loopName3 = request.POST.get('loopName3')
         loop.x3 = request.POST.get('x3')
         loop.y3 = request.POST.get('y3')
         loop.width3 = request.POST.get('width3')
         loop.height3 = request.POST.get('height3')
+        loop.angle3 = request.POST.get('angle3')
 
         loop.loopName4 = request.POST.get('loopName4')
         loop.x4 = request.POST.get('x4')
         loop.y4 = request.POST.get('y4')
         loop.width4 = request.POST.get('width4')
         loop.height4 = request.POST.get('height4')
+        loop.angle4 = request.POST.get('angle4')
+        loop.save()
 
         x1=int(loop.x1)
         y1=int(loop.y1)
@@ -399,8 +409,12 @@ def edit_loop(request, id):
                 },
             ]
         }
+        
 
-        loop.save()
+        
+
+        # input.loop = loop
+        # input.save()
 
         file_path = os.path.join('exports', f'{loop.fileName}.json')
         with open(file_path, 'w') as f:
@@ -413,11 +427,13 @@ def edit_loop(request, id):
             f.write(f'{loop.x2}, {loop.y2}, {loop.width2}, {loop.height2}, {loop.angle2}\n')
             f.write(f'{loop.x3}, {loop.y3}, {loop.width3}, {loop.height3}, {loop.angle3}\n')
             f.write(f'{loop.x4}, {loop.y4}, {loop.width4}, {loop.height4}, {loop.angle4}\n')
+        select_draw(f'{loop.fileName}.txt' , id)
 
         return HttpResponseRedirect(reverse('preview'))
     context = {
         'loop': loop,
-        'id': loop.id
+        'id': loop.id,
+        'input': input
     }
     return render(request, 'editLoop.html', context)
 
@@ -480,7 +496,7 @@ def uploadPage(request):
             cv2.imwrite(image_path, image) # Save default image
             
             # Rescale the image and save it with a different name
-            image_rescaled = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
+            image_rescaled = cv2.resize(image, (0, 0), fx=1.0, fy=1.0)
             image_name_scale = f"{video_name}_scale.png"
             image_path_scale = os.path.join(settings.MEDIA_ROOT, 'uploads/images', image_name_scale)
             
@@ -507,7 +523,6 @@ def uploadPage(request):
         )
      
         # result = call_detect.delay('./' + input.video.url, input.pk)
-
         # return HttpResponseRedirect(reverse('createLoop'))
         return render(request, "loop.html", {'id': input.pk, 'input': input})
     else:
@@ -678,12 +693,12 @@ def drawThreeLoop(loop1,loop2,loop3,id):
         return print("drawThreeLoop Finish")
 
 def drawFourLoop(loop1,loop2,loop3,loop4,id):
-        name = uploadPage.objects.get(id=id)
-        print(f'{name.video_name}')
-        image_path = os.path.join(settings.MEDIA_ROOT, 'uploads', 'video', f'{name.video_name}')
-        image_name =  (f'{name.video_name}')
-        image_name_draw = (f'{name.video_name}_drawed.jpg')
-        drawing_image = np.array(Image.open(image_name))
+        input = Input.objects.get(id=id)
+        print(f'{input.image_scale}')
+        image_path = os.path.join(settings.MEDIA_ROOT,  str(input.image))
+        filename, ext = os.path.splitext(input.image.name)
+        image_path2 = os.path.join(settings.MEDIA_ROOT, f'{filename}_draw.jpg' )
+        drawing_image = np.array(Image.open(image_path))
         plt.imshow(drawing_image)
         plt.gca().add_patch(
                 plt.Rectangle([loop1[0],loop1[1]],
@@ -717,12 +732,14 @@ def drawFourLoop(loop1,loop2,loop3,loop4,id):
                             angle = loop4[4],
                             alpha=1)
                 )
-        plt.savefig("../media/uploads/images", f'{image_name_draw}')
+        plt.savefig(image_path2)
+        input.image_draw = f'{filename}_draw.jpg'
+        input.save()
         return print("drawFourLoop Finish")
 
-def select_draw(request,id):
-    name = CreateLoop.objects.get(id=id)
-    text_file_path = os.path.join('exports' , f'{name.fileName}.txt')     
+def select_draw(name ,id):
+
+    text_file_path = os.path.join('exports' , name)     
     with open(text_file_path, 'r') as f:
         line_count = len(f.readlines())
         f.close()
