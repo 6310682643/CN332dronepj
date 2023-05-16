@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<h1 class="title" style="padding: 50px;"> Edit Loop </h1>
+<h1 class="title-loop" style="padding: 50px;"> Edit Loop </h1>
 <form id="form1" action="{% url 'edit_loop' input.id %}" method="POST" enctype="multipart/form-data">
     <center>
 
@@ -14,163 +14,214 @@
         <div class="col-6">
             <div class="form-create">
                 <p>
-                    <!-- loop1 -->
-                <h2>Loop 1</h2>
-                <div class="loopname">
-                    <label>loop name</label>
-                    <input class="input" type="text" name="loopName1" value="{{ loop.loopName1 }}" required
-                        style="margin-left: 10px;" />
+                   <h2 >Loop 1</h2> 
+                </p>
+                <div class="row">
+                    <div class="col-3">
+                        <p>
+                            <label>loop name</label>
+                        </p>
+                        <p>
+                            <label>X</label>
+                        </p>
+                        <p>
+                            <label>Y</label>
+                        </p>
+                        <p>
+                            <label>width</label>
+                        </p>
+                        <p>
+                            <label>height</label>
+                        </p>
+                        <p>
+                            <label>angle</label>
+                        </p>
+                        
+                    </div>
+                    <div class="col-9">
+                        <p>
+                            <input class="input" type="text" name="loopName1" value="{{ loop.loopName1 }}" required style="margin-left: 10px; align-items: flex-end;" />
+                        </p>
+                        <p>
+                            <input class="input" type="text" name="x1" value="{{ loop.x1 }}" required style="margin-left: 10px;" />
+                        </p>
+                        <p>
+                            <input class="input" type="text" name="y1" value="{{ loop.y1 }}" required style="margin-left: 10px;" />
+                        </p>
+                        <p>
+                            <input class="input" type="text" name="width1" value="{{ loop.width1 }}" required style="margin-left: 10px;" />
+                        </p>
+                        <p>
+                            <input class="input" type="text" name="height1" value="{{ loop.height1 }}" required style="margin-left: 10px;" />
+                        </p>
+                        <p>
+                           <input class="input" type="text" name="angle1" value="{{ loop.angle1 }}" required style="margin-left: 10px;" /> 
+                        </p>
+                        
+                    </div>
                 </div>
-
-                </p>
-                <p>
-                    <label>X</label>
-                    <input class="input" type="text" name="x1" value="{{ loop.x1 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>Y</label>
-                    <input class="input" type="text" name="y1" value="{{ loop.y1 }}" required
-                        style="margin-left: 10px;" />
-
-                </p>
-                <p>
-                    <label>width</label>
-                    <input class="input" type="text" name="width1" value="{{ loop.width1 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>height</label>
-                    <input class="input" type="text" name="height1" value="{{ loop.height1 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>angle</label>
-                    <input class="input" type="text" name="angle1" value="{{ loop.angle1 }}" required
-                        style="margin-left: 10px;" />
-                </p>
             </div>
-        </div>
+        </div>   
 
         <div class="col-6">
             <div class="form-create">
                 <!-- loop2 -->
                 <p>
-                <h2>Loop 2</h2>
-                <div class="loopname">
-                    <label>Loop name</label>
-                    <input class="input" type="text" name="loopName2" value="{{ loop.loopName2 }}" required
-                        style="margin-left: 10px;" />
-                </div>
-                </p>
-                <p>
-                    <label>X</label>
-                    <input class="input" type="text" name="x2" value="{{ loop.x2 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>Y</label>
-                    <input class="input" type="text" name="y2" value="{{ loop.y2 }}" required
-                        style="margin-left: 10px;" />
-
-                </p>
-                <p>
-                    <label>width</label>
-                    <input class="input" type="text" name="width2" value="{{ loop.width2 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>height</label>
-                    <input class="input" type="text" name="height2" value="{{ loop.height2 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>angle</label>
-                    <input class="input" type="text" name="angle2" value="{{ loop.angle2 }}" required
-                        style="margin-left: 10px;" />
-                </p>
+                    <h2 >Loop 2</h2> 
+                 </p>
+                 <div class="row">
+                     <div class="col-3">
+                         <p>
+                             <label>loop name</label>
+                         </p>
+                         <p>
+                             <label>X</label>
+                         </p>
+                         <p>
+                             <label>Y</label>
+                         </p>
+                         <p>
+                             <label>width</label>
+                         </p>
+                         <p>
+                             <label>height</label>
+                         </p>
+                         <p>
+                             <label>angle</label>
+                         </p>
+                         
+                     </div>
+                     <div class="col-9">
+                         <p>
+                             <input class="input" type="text" name="loopName2" value="{{ loop.loopName2 }}" required style="margin-left: 10px; align-items: flex-end;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="x2" value="{{ loop.x2 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="y2" value="{{ loop.y2 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="width2" value="{{ loop.width2 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="height2" value="{{ loop.height2 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                            <input class="input" type="text" name="angle2" value="{{ loop.angle2 }}" required style="margin-left: 10px;" /> 
+                         </p>
+                         
+                     </div>
+                 </div>
             </div>
         </div>
         <div class="col-6">
             <!-- loop3 -->
             <div class="form-create">
                 <p>
-                <h2>Loop 3</h2>
-                <div class="loopname">
-                    <label>Loop name</label>
-                    <input class="input" type="text" name="loopName3" value="{{ loop.loopName3 }}" required
-                        style="margin-left: 10px;" />
-                </div>
-
-                </p>
-                <p>
-                    <label>X</label>
-                    <input class="input" type="text" name="x3" value="{{ loop.x3 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>Y</label>
-                    <input class="input" type="text" name="y3" value="{{ loop.y3 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>width</label>
-                    <input class="input" type="text" name="width3" value="{{ loop.width3 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>height</label>
-                    <input class="input" type="text" name="height3" value="{{ loop.height3 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>angle</label>
-                    <input class="input" type="text" name="angle3" value="{{ loop.angle3 }}" required
-                        style="margin-left: 10px;" />
-                </p>
+                    <h2 >Loop 3</h2> 
+                 </p>
+                 <div class="row">
+                     <div class="col-3">
+                         <p>
+                             <label>loop name</label>
+                         </p>
+                         <p>
+                             <label>X</label>
+                         </p>
+                         <p>
+                             <label>Y</label>
+                         </p>
+                         <p>
+                             <label>width</label>
+                         </p>
+                         <p>
+                             <label>height</label>
+                         </p>
+                         <p>
+                             <label>angle</label>
+                         </p>
+                         
+                     </div>
+                     <div class="col-9">
+                         <p>
+                             <input class="input" type="text" name="loopName3" value="{{ loop.loopName3 }}" required style="margin-left: 10px; align-items: flex-end;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="x3" value="{{ loop.x3 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="y3" value="{{ loop.y3 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="width3" value="{{ loop.width3 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="height3" value="{{ loop.height3 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                            <input class="input" type="text" name="angle3" value="{{ loop.angle3 }}" required style="margin-left: 10px;" /> 
+                         </p>
+                         
+                     </div>
+                 </div>
             </div>
         </div>
         <div class="col-6">
             <!-- loop4 -->
             <div class="form-create">
                 <p>
-                <h2>Loop 4</h2>
-                <div class="loopname">
-                    <label>Loop name</label>
-                    <input class="input" type="text" name="loopName4" value="{{ loop.loopName4 }}" required
-                        style="margin-left: 10px;" />
-                </div>
-                </p>
-                <p>
-                    <label>X</label>
-                    <input class="input" type="text" name="x4" value="{{ loop.x4 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>Y</label>
-                    <input class="input" type="text" name="y4" value="{{ loop.y4 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>width</label>
-                    <input class="input" type="text" name="width4" value="{{ loop.width4 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>height</label>
-                    <input class="input" type="text" name="height4" value="{{ loop.height4 }}" required
-                        style="margin-left: 10px;" />
-                </p>
-                <p>
-                    <label>angle</label>
-                    <input class="input" type="text" name="angle4" value="{{ loop.angle4 }}" required
-                        style="margin-left: 10px;" />
-                </p>
+                    <h2 >Loop 4</h2> 
+                 </p>
+                 <div class="row">
+                     <div class="col-3">
+                         <p>
+                             <label>loop name</label>
+                         </p>
+                         <p>
+                             <label>X</label>
+                         </p>
+                         <p>
+                             <label>Y</label>
+                         </p>
+                         <p>
+                             <label>width</label>
+                         </p>
+                         <p>
+                             <label>height</label>
+                         </p>
+                         <p>
+                             <label>angle</label>
+                         </p>
+                         
+                     </div>
+                     <div class="col-9">
+                         <p>
+                             <input class="input" type="text" name="loopName4" value="{{ loop.loopName4 }}" required style="margin-left: 10px; align-items: flex-end;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="x4" value="{{ loop.x4 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="y4" value="{{ loop.y4 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="width4" value="{{ loop.width4 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                             <input class="input" type="text" name="height4" value="{{ loop.height4 }}" required style="margin-left: 10px;" />
+                         </p>
+                         <p>
+                            <input class="input" type="text" name="angle4" value="{{ loop.angle4 }}" required style="margin-left: 10px;" /> 
+                         </p>
+                         
+                     </div>
+                 </div>
             </div>
         </div>
     </div>
     <p style="display: inline;">
-        <input class="button-submit" type="submit" value="Submit" />
+        <input class="button-submit" style="margin-left: 35%;" type="submit" value="Submit" />
         <button class="button-cancle">
             <a href="{% url 'preview' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
         </button>

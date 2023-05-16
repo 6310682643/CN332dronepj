@@ -7,7 +7,17 @@ body {
 }
 
 .title {
+    padding: 50px;
+}
+
+.title-loop {
     padding-top: 50px;
+    position: absolute; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 /* loop.html - angle */
@@ -75,13 +85,16 @@ body {
 }
 /* End Angle */
 
+.row .col-3 p {
+    padding: 4px;
+}
+
 .button-submit {
     font-family: 'Poppins', sans-serif;
     color: #ffffff;
     background-color: #1976D2;
     border: 2px solid #1976D2;
     border-radius: 15px;
-    margin-left: 40%;
     margin-top: 20px;
     margin-bottom: 50px;
     font-size: 20px;
@@ -134,7 +147,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px;
     justify-content: center;
     align-items: center;
     border: 1px solid #ffffff;
@@ -152,12 +165,11 @@ body {
 
 .form-create {
     max-width: 800px;
-    /* height: 960px; */
     display: flex;
     font-family: 'Poppins', sans-serif;
     background-color: #ffffff;
     margin: 0 auto;
-    padding: 30px;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     border: 1px solid #ffffff;
