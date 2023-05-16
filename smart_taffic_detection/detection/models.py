@@ -86,7 +86,7 @@ class Input(models.Model):
 class Result(models.Model):
     input_video = models.ForeignKey(
         Input, null=True, on_delete=models.SET_NULL)
-    video = models.FileField(upload_to='uploads/video', blank=True)
+    video = models.FileField(upload_to='uploads/result', blank=True)
     loop = models.FileField(upload_to='uploads/files', blank=True)
 
     def __str__(self):

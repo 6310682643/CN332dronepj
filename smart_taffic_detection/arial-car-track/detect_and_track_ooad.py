@@ -52,8 +52,8 @@ class Opt:
     agnostic_nms = True
     augment = True
     update = True
-    project = '../media/result'
-    name = 'result_here'
+    project = './media'
+    name = 'result'
     exist_ok = True
     no_trace = True
     colored_trk = True
@@ -318,7 +318,7 @@ class Detection:
                         else:  # stream
                             fps, w, h = 30, im0.shape[1], im0.shape[0]
                             save_path += '.mp4'
-                        vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
+                        vid_writer = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'VP09'), fps, (w, h))
                     vid_writer.write(im0)
 
         #if save_txt or save_img:

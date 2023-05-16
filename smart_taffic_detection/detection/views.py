@@ -30,8 +30,6 @@ import matplotlib.pyplot as plt
 # from django.http import JsonResponse
 # Create your views here.
 
-
-
 def createLoop(request, id):
     plt.clf()
     if request.method == 'POST':
@@ -66,11 +64,14 @@ def createLoop(request, id):
         height4 = request.POST['height4']
         angle4 = request.POST['angle4']
 
-        # Create the directory if it does not exist
+        # Create the directory if it does not exst
         directory = 'exports'
         if not os.path.exists(directory):
             os.makedirs(directory)
-
+        list = [[int(x1), int(y1), int(width1) , int(height1) , int(angle1)],
+                [int(x2), int(y2), int(width2) , int(height2) , int(angle2)],
+                [int(x3), int(y3), int(width3) , int(height3) , int(angle3)],
+                [int(x4), int(y4), int(width4) , int(height4) , int(angle4)]]
         x1=int(x1)
         y1=int(y1)
         x2=int(x2)
@@ -92,117 +93,77 @@ def createLoop(request, id):
         angle3 = int(angle3)
         angle4 = int(angle4)
 
-        x1_1, y1_1 = x1, y1
-        x1_2, y1_2 = x1 + width1, y1
-        x1_3, y1_3 = x1 + width1, y1 - height1
-        x1_4, y1_4 = x1, y1 - height1
-        angle_1 = math.radians(-angle1)
-
-        x2_1, y2_1 = x2, y2
-        x2_2, y2_2 = x2 + width2, y2
-        x2_3, y2_3 = x2 + width2, y2 - height2
-        x2_4, y2_4 = x2, y2 - height2
-        angle_2 = math.radians(-angle2)
-
-        x3_1, y3_1 = x3, y3
-        x3_2, y3_2 = x3 + width3, y3
-        x3_3, y3_3 = x3 + width3, y3 - height3
-        x3_4, y3_4 = x3, y3 - height3
-        angle_3 = math.radians(-angle3)
-
-        x4_1, y4_1 = x4, y4
-        x4_2, y4_2 = x4 + width4, y4
-        x4_3, y4_3 = x4 + width4, y4 - height4
-        x4_4, y4_4 = x4, y4 - height4
-        angle_4 = math.radians(-angle4)
-
-        # rotate the coordinates around the origin
-        xtl1 = (x1_1 - x1) * math.cos(angle_1) - (y1_1 - y1) * math.sin(angle_1) + x1
-        ytl1 = (x1_1 - x1) * math.sin(angle_1) + (y1_1 - y1) * math.cos(angle_1) + y1
-        xtr1 = (x1_2 - x1) * math.cos(angle_1) - (y1_2 - y1) * math.sin(angle_1) + x1
-        ytr1 = (x1_2 - x1) * math.sin(angle_1) + (y1_2 - y1) * math.cos(angle_1) + y1
-        xbr1 = (x1_3 - x1) * math.cos(angle_1) - (y1_3 - y1) * math.sin(angle_1) + x1
-        ybr1 = (x1_3 - x1) * math.sin(angle_1) + (y1_3 - y1) * math.cos(angle_1) + y1
-        xbl1 = (x1_4 - x1) * math.cos(angle_1) - (y1_4 - y1) * math.sin(angle_1) + x1
-        ybl1 = (x1_4 - x1) * math.sin(angle_1) + (y1_4 - y1) * math.cos(angle_1) + y1
-
-        xtl2 = (x2_1 - x2) * math.cos(angle_2) - (y2_1 - y2) * math.sin(angle_2) + x2
-        ytl2 = (x2_1 - x2) * math.sin(angle_2) + (y2_1 - y2) * math.cos(angle_2) + y2
-        xtr2 = (x2_2 - x2) * math.cos(angle_2) - (y2_2 - y2) * math.sin(angle_2) + x2
-        ytr2 = (x2_2 - x2) * math.sin(angle_2) + (y2_2 - y2) * math.cos(angle_2) + y2
-        xbr2 = (x2_3 - x2) * math.cos(angle_2) - (y2_3 - y2) * math.sin(angle_2) + x2
-        ybr2 = (x2_3 - x2) * math.sin(angle_2) + (y2_3 - y2) * math.cos(angle_2) + y2
-        xbl2 = (x2_4 - x2) * math.cos(angle_2) - (y2_4 - y2) * math.sin(angle_2) + x2
-        ybl2 = (x2_4 - x2) * math.sin(angle_2) + (y2_4 - y2) * math.cos(angle_2) + y2
-
-        xtl3 = (x3_1 - x3) * math.cos(angle_3) - (y3_1 - y3) * math.sin(angle_3) + x3
-        ytl3 = (x3_1 - x3) * math.sin(angle_3) + (y3_1 - y3) * math.cos(angle_3) + y3
-        xtr3 = (x3_2 - x3) * math.cos(angle_3) - (y3_2 - y3) * math.sin(angle_3) + x3
-        ytr3 = (x3_2 - x3) * math.sin(angle_3) + (y3_2 - y3) * math.cos(angle_3) + y3
-        xbr3 = (x3_3 - x3) * math.cos(angle_3) - (y3_3 - y3) * math.sin(angle_3) + x3
-        ybr3 = (x3_3 - x3) * math.sin(angle_3) + (y3_3 - y3) * math.cos(angle_3) + y3
-        xbl3 = (x3_4 - x3) * math.cos(angle_3) - (y3_4 - y3) * math.sin(angle_3) + x3
-        ybl3 = (x3_4 - x3) * math.sin(angle_3) + (y3_4 - y3) * math.cos(angle_3) + y3
-
-        xtl4 = (x4_1 - x4) * math.cos(angle_4) - (y4_1 - y4) * math.sin(angle_4) + x4
-        ytl4 = (x4_1 - x4) * math.sin(angle_4) + (y4_1 - y4) * math.cos(angle_4) + y4
-        xtr4 = (x4_2 - x4) * math.cos(angle_4) - (y4_2 - y4) * math.sin(angle_4) + x4
-        ytr4 = (x4_2 - x4) * math.sin(angle_4) + (y4_2 - y4) * math.cos(angle_4) + y4
-        xbr4 = (x4_3 - x4) * math.cos(angle_4) - (y4_3 - y4) * math.sin(angle_4) + x4
-        ybr4 = (x4_3 - x4) * math.sin(angle_4) + (y4_3 - y4) * math.cos(angle_4) + y4
-        xbl4 = (x4_4 - x4) * math.cos(angle_4) - (y4_4 - y4) * math.sin(angle_4) + x4
-        ybl4 = (x4_4 - x4) * math.sin(angle_4) + (y4_4 - y4) * math.cos(angle_4) + y4
+        xtl1, ytl1 = x1, y1
+        xtr1, ytr1 = x1 + width1 * np.cos(angle1), y1 + width1 * np.sin(angle1)
+        xbr1, ybr1 = x1 - height1 * np.sin(angle1), y1 + height1 * np.cos(angle1)
+        xbl1 , ybl1 = x1 + width1 * np.cos(angle1) - height1 * np.sin(angle1), y1 + width1 * np.sin(angle1) + height1 * np.cos(angle1)
         
+        xtl2, ytl2 = x2, y2
+        xtr2, ytr2 = x2 + width2 * np.cos(angle2), y2 + width2 * np.sin(angle2)
+        xbr2, ybr2 = x2 - height2 * np.sin(angle2), y2 + height2 * np.cos(angle2)
+        xbl2 , ybl2 = x2 + width2 * np.cos(angle2) - height2 * np.sin(angle2), y2 + width2 * np.sin(angle2) + height2 * np.cos(angle2)
+        
+        xtl3, ytl3 = x3, y3
+        xtr3, ytr3 = x3 + width3 * np.cos(angle3), y3 + width3 * np.sin(angle3)
+        xbr3, ybr3 = x3 - height3 * np.sin(angle3), y3 + height3 * np.cos(angle3)
+        xbl3 , ybl3 = x3 + width3 * np.cos(angle3) - height3 * np.sin(angle3), y3 + width3 * np.sin(angle3) + height3 * np.cos(angle3)
+        
+        xtl4, ytl4 = x4, y4
+        xtr4, ytr4 = x4 + width4 * np.cos(angle4), y4 + width4 * np.sin(angle4)
+        xbr4, ybr4 = x4 - height4 * np.sin(angle4), y4 + height4 * np.cos(angle4)
+        xbl4 , ybl4 = x4 + width4 * np.cos(angle4) - height4 * np.sin(angle4), y4 + width4 * np.sin(angle4) + height4 * np.cos(angle4)
+
         # Write the data to a JSON file
         json_data = {
             'loops': [
                 {
                     'name': loopName1,
-                    'id': "0",
-                    'points': [
+                    'id':"0",
+                    'points':[
                         {"x": int(xtl1), "y": int(ytl1)},
                         {"x": int(xtr1), "y": int(ytr1)},
+                        {"x": int(xbl1), "y": int(ybl1)},
                         {"x": int(xbr1), "y": int(ybr1)},
-                        {"x": int(xbl1), "y": int(ybl1)}
                     ],
-                    'orientation': "counterclockwise",
-                    "summary_location":{"x":int(x1),"y":f"{y1}"},
+                    'orientation':"counterclockwise",
+                    "summary_location":{"x":0,"y":"0"},
                 },
                 {
                     'name': loopName2,
-                    'id': "1",
-                    'points': [
-                        {"x": int(xtl2), "y": int(ytl2)},
+                    'id':"1",
+                    'points':[
+                        {"x": int(xbl2), "y": int(ybl2)},
                         {"x": int(xtr2), "y": int(ytr2)},
-                        {"x": int(xbr2), "y": int(ybr2)},
-                        {"x": int(xbl2), "y": int(ybl2)}
+                        {"x": int(xtl2), "y": int(ytl2)},
+                        {"x": int(xbr2), "y": int(ybr2)}
                     ],
-                    'orientation': "clockwise",
-                    "summary_location":{"x":int(x2),"y":f"{y2}"},
+                    'orientation':"clockwise",
+                    "summary_location":{"x":int(x2),"y":"0"},
                 },
                 {
                     'name': loopName3,
-                    'id': "2",
-                    'points': [
-                        {"x": int(xtl3), "y": int(ytl3)},
-                        {"x": int(xtr3), "y": int(ytr3)},
+                    'id':"2",
+                    'points':[
+                        {"x": int(xbl3), "y": int(ybl3)},
                         {"x": int(xbr3), "y": int(ybr3)},
-                        {"x": int(xbl3), "y": int(ybl3)}
+                        {"x": int(xtl3), "y": int(ytl3)},
+                        {"x": int(xtr3), "y": int(ytr3)}
                     ],
-                    'orientation': "clockwise",
-                    "summary_location":{"x":int(x3),"y":f"{y3}"},
+            
+                    'orientation':"counterclockwise",
+                    "summary_location":{"x":int(x2),"y":f"{float(ytr3)}"},
                 },
                 {
                     'name': loopName4,
-                    'id': "3",
-                    'points': [
+                    'id':"3",
+                    'points':[
                         {"x": int(xtl4), "y": int(ytl4)},
-                        {"x": int(xtr4), "y": int(ytr4)},
                         {"x": int(xbr4), "y": int(ybr4)},
-                        {"x": int(xbl4), "y": int(ybl4)}
+                        {"x": int(xbl4), "y": int(ybl4)},
+                        {"x": int(xtr4), "y": int(ytr4)}
                     ],
-                    'orientation': "clockwise",
-                    "summary_location":{"x":int(x4),"y":f"{y4}"},
+                    'orientation':"counterclockwise",
+                    "summary_location":{"x":0,"y":f"{float(ytr4)}"},
                 },
             ]
         }
@@ -296,66 +257,26 @@ def edit_loop(request, id):
         angle3 = int(loop.angle3)
         angle4 = int(loop.angle4)
 
-        x1_1, y1_1 = x1, y1
-        x1_2, y1_2 = x1 + width1, y1
-        x1_3, y1_3 = x1 + width1, y1 - height1
-        x1_4, y1_4 = x1, y1 - height1
-        angle_1 = math.radians(-angle1)
-
-        x2_1, y2_1 = x2, y2
-        x2_2, y2_2 = x2 + width2, y2
-        x2_3, y2_3 = x2 + width2, y2 - height2
-        x2_4, y2_4 = x2, y2 - height2
-        angle_2 = math.radians(-angle2)
-
-        x3_1, y3_1 = x3, y3
-        x3_2, y3_2 = x3 + width3, y3
-        x3_3, y3_3 = x3 + width3, y3 - height3
-        x3_4, y3_4 = x3, y3 - height3
-        angle_3 = math.radians(-angle3)
-
-        x4_1, y4_1 = x4, y4
-        x4_2, y4_2 = x4 + width4, y4
-        x4_3, y4_3 = x4 + width4, y4 - height4
-        x4_4, y4_4 = x4, y4 - height4
-        angle_4 = math.radians(-angle4)
-
-        # rotate the coordinates around the origin
-        xtl1 = (x1_1 - x1) * math.cos(angle_1) - (y1_1 - y1) * math.sin(angle_1) + x1
-        ytl1 = (x1_1 - x1) * math.sin(angle_1) + (y1_1 - y1) * math.cos(angle_1) + y1
-        xtr1 = (x1_2 - x1) * math.cos(angle_1) - (y1_2 - y1) * math.sin(angle_1) + x1
-        ytr1 = (x1_2 - x1) * math.sin(angle_1) + (y1_2 - y1) * math.cos(angle_1) + y1
-        xbr1 = (x1_3 - x1) * math.cos(angle_1) - (y1_3 - y1) * math.sin(angle_1) + x1
-        ybr1 = (x1_3 - x1) * math.sin(angle_1) + (y1_3 - y1) * math.cos(angle_1) + y1
-        xbl1 = (x1_4 - x1) * math.cos(angle_1) - (y1_4 - y1) * math.sin(angle_1) + x1
-        ybl1 = (x1_4 - x1) * math.sin(angle_1) + (y1_4 - y1) * math.cos(angle_1) + y1
-
-        xtl2 = (x2_1 - x2) * math.cos(angle_2) - (y2_1 - y2) * math.sin(angle_2) + x2
-        ytl2 = (x2_1 - x2) * math.sin(angle_2) + (y2_1 - y2) * math.cos(angle_2) + y2
-        xtr2 = (x2_2 - x2) * math.cos(angle_2) - (y2_2 - y2) * math.sin(angle_2) + x2
-        ytr2 = (x2_2 - x2) * math.sin(angle_2) + (y2_2 - y2) * math.cos(angle_2) + y2
-        xbr2 = (x2_3 - x2) * math.cos(angle_2) - (y2_3 - y2) * math.sin(angle_2) + x2
-        ybr2 = (x2_3 - x2) * math.sin(angle_2) + (y2_3 - y2) * math.cos(angle_2) + y2
-        xbl2 = (x2_4 - x2) * math.cos(angle_2) - (y2_4 - y2) * math.sin(angle_2) + x2
-        ybl2 = (x2_4 - x2) * math.sin(angle_2) + (y2_4 - y2) * math.cos(angle_2) + y2
-
-        xtl3 = (x3_1 - x3) * math.cos(angle_3) - (y3_1 - y3) * math.sin(angle_3) + x3
-        ytl3 = (x3_1 - x3) * math.sin(angle_3) + (y3_1 - y3) * math.cos(angle_3) + y3
-        xtr3 = (x3_2 - x3) * math.cos(angle_3) - (y3_2 - y3) * math.sin(angle_3) + x3
-        ytr3 = (x3_2 - x3) * math.sin(angle_3) + (y3_2 - y3) * math.cos(angle_3) + y3
-        xbr3 = (x3_3 - x3) * math.cos(angle_3) - (y3_3 - y3) * math.sin(angle_3) + x3
-        ybr3 = (x3_3 - x3) * math.sin(angle_3) + (y3_3 - y3) * math.cos(angle_3) + y3
-        xbl3 = (x3_4 - x3) * math.cos(angle_3) - (y3_4 - y3) * math.sin(angle_3) + x3
-        ybl3 = (x3_4 - x3) * math.sin(angle_3) + (y3_4 - y3) * math.cos(angle_3) + y3
-
-        xtl4 = (x4_1 - x4) * math.cos(angle_4) - (y4_1 - y4) * math.sin(angle_4) + x4
-        ytl4 = (x4_1 - x4) * math.sin(angle_4) + (y4_1 - y4) * math.cos(angle_4) + y4
-        xtr4 = (x4_2 - x4) * math.cos(angle_4) - (y4_2 - y4) * math.sin(angle_4) + x4
-        ytr4 = (x4_2 - x4) * math.sin(angle_4) + (y4_2 - y4) * math.cos(angle_4) + y4
-        xbr4 = (x4_3 - x4) * math.cos(angle_4) - (y4_3 - y4) * math.sin(angle_4) + x4
-        ybr4 = (x4_3 - x4) * math.sin(angle_4) + (y4_3 - y4) * math.cos(angle_4) + y4
-        xbl4 = (x4_4 - x4) * math.cos(angle_4) - (y4_4 - y4) * math.sin(angle_4) + x4
-        ybl4 = (x4_4 - x4) * math.sin(angle_4) + (y4_4 - y4) * math.cos(angle_4) + y4
+        
+        xtl1, ytl1 = x1, y1
+        xtr1, ytr1 = x1 + width1 * np.cos(angle1), y1 + width1 * np.sin(angle1)
+        xbr1, ybr1 = x1 - height1 * np.sin(angle1), y1 + height1 * np.cos(angle1)
+        xbl1 , ybl1 = x1 + width1 * np.cos(angle1) - height1 * np.sin(angle1), y1 + width1 * np.sin(angle1) + height1 * np.cos(angle1)
+        
+        xtl2, ytl2 = x2, y2
+        xtr2, ytr2 = x2 + width2 * np.cos(angle2), y2 + width2 * np.sin(angle2)
+        xbr2, ybr2 = x2 - height2 * np.sin(angle2), y2 + height2 * np.cos(angle2)
+        xbl2 , ybl2 = x2 + width2 * np.cos(angle2) - height2 * np.sin(angle2), y2 + width2 * np.sin(angle2) + height2 * np.cos(angle2)
+        
+        xtl3, ytl3 = x3, y3
+        xtr3, ytr3 = x3 + width3 * np.cos(angle3), y3 + width3 * np.sin(angle3)
+        xbr3, ybr3 = x3 - height3 * np.sin(angle3), y3 + height3 * np.cos(angle3)
+        xbl3 , ybl3 = x3 + width3 * np.cos(angle3) - height3 * np.sin(angle3), y3 + width3 * np.sin(angle3) + height3 * np.cos(angle3)
+        
+        xtl4, ytl4 = x4, y4
+        xtr4, ytr4 = x4 + width4 * np.cos(angle4), y4 + width4 * np.sin(angle4)
+        xbr4, ybr4 = x4 - height4 * np.sin(angle4), y4 + height4 * np.cos(angle4)
+        xbl4 , ybl4 = x4 + width4 * np.cos(angle4) - height4 * np.sin(angle4), y4 + width4 * np.sin(angle4) + height4 * np.cos(angle4)
 
         data = {
             'loops': [
@@ -365,48 +286,48 @@ def edit_loop(request, id):
                     'points':[
                         {"x": int(xtl1), "y": int(ytl1)},
                         {"x": int(xtr1), "y": int(ytr1)},
+                        {"x": int(xbl1), "y": int(ybl1)},
                         {"x": int(xbr1), "y": int(ybr1)},
-                        {"x": int(xbl1), "y": int(ybl1)}
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":int(x1),"y":f"{y1}"},
+                    "summary_location":{"x":0,"y":"0"},
                 },
                 {
                     'name': loop.loopName2,
                     'id':"1",
                     'points':[
-                        {"x": int(xtl2), "y": int(ytl2)},
+                        {"x": int(xbl2), "y": int(ybl2)},
                         {"x": int(xtr2), "y": int(ytr2)},
-                        {"x": int(xbr2), "y": int(ybr2)},
-                        {"x": int(xbl2), "y": int(ybl2)}
+                        {"x": int(xtl2), "y": int(ytl2)},
+                        {"x": int(xbr2), "y": int(ybr2)}
                     ],
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x2),"y":f"{y2}"},
+                    "summary_location":{"x":int(x2),"y":"0"},
                 },
                 {
                     'name': loop.loopName3,
                     'id':"2",
                     'points':[
-                        {"x": int(xtl3), "y": int(ytl3)},
-                        {"x": int(xtr3), "y": int(ytr3)},
+                        {"x": int(xbl3), "y": int(ybl3)},
                         {"x": int(xbr3), "y": int(ybr3)},
-                        {"x": int(xbl3), "y": int(ybl3)}
+                        {"x": int(xtl3), "y": int(ytl3)},
+                        {"x": int(xtr3), "y": int(ytr3)}
                     ],
             
-                    'orientation':"clockwise",
-                    "summary_location":{"x":int(x3),"y":f"{y3}"},
+                    'orientation':"counterclockwise",
+                    "summary_location":{"x":int(x2),"y":f"{float(ytr3)}"},
                 },
                 {
                     'name': loop.loopName4,
                     'id':"3",
                     'points':[
                         {"x": int(xtl4), "y": int(ytl4)},
-                        {"x": int(xtr4), "y": int(ytr4)},
                         {"x": int(xbr4), "y": int(ybr4)},
-                        {"x": int(xbl4), "y": int(ybl4)}
+                        {"x": int(xbl4), "y": int(ybl4)},
+                        {"x": int(xtr4), "y": int(ytr4)}
                     ],
-                    'orientation':"clockwise",
-                    "summary_location":{"x":int(x4),"y":f"{y4}"},
+                    'orientation':"counterclockwise",
+                    "summary_location":{"x":0,"y":f"{float(ytl4)}"},
                 },
             ]
         }
@@ -415,7 +336,6 @@ def edit_loop(request, id):
         with open(file_path, 'w') as f:
             json.dump(data, f)
             
-
         text_file_path = os.path.join('exports', f'{loop.fileName}.txt')
         with open(text_file_path, 'w') as f:
             f.write(f'{loop.x1}, {loop.y1}, {loop.width1}, {loop.height1}, {loop.angle1}\n')
@@ -524,8 +444,10 @@ def uploadPage(request):
         return render(request, "upload.html")
 def detect(request, id):
     input = Input.objects.get(id=id)
-    result = call_detect.delay('./' + input.video.url, input.pk)
-    return render(request, "home.html")
+    print(input.video.url)
+    h,media, url = input.video.url.split('/')
+    result = call_detect.delay('./media/uploads/video/' + url, input.pk)
+    return HttpResponseRedirect(reverse('home'))
 
 # def celery_status(request, task_id):
 #     result = AsyncResult(task_id)
