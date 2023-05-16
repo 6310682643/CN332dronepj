@@ -7,7 +7,7 @@
 <div class="form-upload">
     <form action="{% url 'uploadPage' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <p>
+        <p style="margin-top: 20px;">
             <label>Owner</label>
             <input class="input" type="text" name="ownerName" required style="margin-left: 102px;" />
         </p>
@@ -42,7 +42,7 @@
             <input class="input" type="text" name="note" style="margin-left: 120px;" />
         </p>
         <p style="display: inline; margin-top: 30px;">
-            <input class="button-submit" type="submit" value="Submit" />
+            <input class="button-submit" style="margin-left: 8rem;" type="submit" value="Submit" />
             <button class="button-cancle">
                 <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Cancel</a>
             </button>

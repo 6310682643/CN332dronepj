@@ -6,31 +6,32 @@
 {% endblock %}
 
 {% block content %}
-<h1>Edit</h1>
-    <div class="form-upload">
+<h1 class="title">Edit</h1>
+    <div class="form-upload" style="justify-content: center;" >
         <form action="{% url 'edit' edit.id %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <p>
+            <p style="margin-top: 20px;">
                 <label>Owner</label>
-                <input class="input" type="text" name="ownerName" value="{{ edit.ownerName }}" required/>
+                <input class="input" type="text" name="ownerName" value="{{ edit.ownerName }}" style="margin-left: 102px;" required/>
             </p>
             <p>
                 <label>Location</label>
-                <input class="input" type="text" name="location" value="{{ edit.location }}" />
+                <input class="input" type="text" name="location" value="{{ edit.location }}" style="margin-left: 87px;" />
             </p>
             <p>
                 <label>Intersection name</label>
-                <input class="input" type="text" name="intersection" value="{{ edit.intersection }}" />
+                <input class="input" type="text" name="intersection" value="{{ edit.intersection }}" style="margin-left: 10px;" />
             </p>  
             <p style = "display: flex; margin-top: 30px; " >
                 <input type="date" name="date" value="{{ edit.date_record }}"/>
-                <input type="time" name="time" value="{{ edit.time_record }}"/>
+                <input type="time" name="time" value="{{ edit.time_record }}" style="margin-left: 20px;"/>
             </p>
-            <p style="display: flex; margin-top: 30px;">
-                <input class="button-submit" type="submit" value="edit" />
-                <a class="btn btn-danger" href="{% url 'home' %}"><span> BACK </span></a>
+            <p style="display: flex; margin-top: 20px;">
+                <input class="button-submit" type="submit" value="Edit" style="margin-left: 9rem;" />
+                <button class="button-cancle">
+                    <a href="{% url 'home' %}" style="color: #ffff; text-decoration: none; ">Back</a>
+                </button>
             </p>
-            
         </form>
     </div>
 </body>
