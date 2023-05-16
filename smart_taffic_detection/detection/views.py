@@ -42,7 +42,6 @@ def createLoop(request, id):
         height1 = request.POST['height1']
         angle1 = request.POST['angle1']
 
-
         loopName2 = request.POST['loopName2']
         x2 = request.POST['x2']
         y2 = request.POST['y2']
@@ -68,10 +67,6 @@ def createLoop(request, id):
         directory = 'exports'
         if not os.path.exists(directory):
             os.makedirs(directory)
-        list = [[int(x1), int(y1), int(width1) , int(height1) , int(angle1)],
-                [int(x2), int(y2), int(width2) , int(height2) , int(angle2)],
-                [int(x3), int(y3), int(width3) , int(height3) , int(angle3)],
-                [int(x4), int(y4), int(width4) , int(height4) , int(angle4)]]
         x1=int(x1)
         y1=int(y1)
         x2=int(x2)
@@ -126,7 +121,7 @@ def createLoop(request, id):
                         {"x": int(xbr1), "y": int(ybr1)},
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":0,"y":"0"},
+                    "summary_location":{"x":0,"y":"30"},
                 },
                 {
                     'name': loopName2,
@@ -138,7 +133,7 @@ def createLoop(request, id):
                         {"x": int(xbr2), "y": int(ybr2)}
                     ],
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x2),"y":"0"},
+                    "summary_location":{"x":950,"y":"30"},
                 },
                 {
                     'name': loopName3,
@@ -151,7 +146,7 @@ def createLoop(request, id):
                     ],
             
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":int(x2),"y":f"{float(ytr3)}"},
+                    "summary_location":{"x":950,"y":"370"},
                 },
                 {
                     'name': loopName4,
@@ -163,7 +158,7 @@ def createLoop(request, id):
                         {"x": int(xtr4), "y": int(ytr4)}
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":0,"y":f"{float(ytr4)}"},
+                    "summary_location":{"x":0,"y":"370"},
                 },
             ]
         }
@@ -195,6 +190,7 @@ def createLoop(request, id):
         input = Input.objects.get(id=id)
         input.loop = loop
         input.save()
+        
         select_draw(f'{fileName}.txt' , id)
         return redirect('preview')
     
@@ -290,7 +286,7 @@ def edit_loop(request, id):
                         {"x": int(xbr1), "y": int(ybr1)},
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":0,"y":"0"},
+                    "summary_location":{"x":0,"y":"30"},
                 },
                 {
                     'name': loop.loopName2,
@@ -302,7 +298,7 @@ def edit_loop(request, id):
                         {"x": int(xbr2), "y": int(ybr2)}
                     ],
                     'orientation':"clockwise",
-                    "summary_location":{"x":int(x2),"y":"0"},
+                    "summary_location":{"x":950,"y":"30"},
                 },
                 {
                     'name': loop.loopName3,
@@ -315,7 +311,7 @@ def edit_loop(request, id):
                     ],
             
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":int(x2),"y":f"{float(ytr3)}"},
+                    "summary_location":{"x":950,"y":"370"},
                 },
                 {
                     'name': loop.loopName4,
@@ -327,7 +323,7 @@ def edit_loop(request, id):
                         {"x": int(xtr4), "y": int(ytr4)}
                     ],
                     'orientation':"counterclockwise",
-                    "summary_location":{"x":0,"y":f"{float(ytl4)}"},
+                    "summary_location":{"x":0,"y":"370"},
                 },
             ]
         }
