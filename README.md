@@ -11,4 +11,4 @@ Download: [arial-car-track](https://github.com/6310682783/act)
 - ภวิศา สิริโรจน์วรกุล 6310620064
 
 # Demo clip
-[>>>>>>DEMO link<<<<<<](https://www.youtube.com/watch?v=wp-PPIHo57Q)
+[![>>>>>>DEMO link<<<<<<](Youtube_logo.png)](https://www.youtube.com/watch?v=ol6rt42prb0)
