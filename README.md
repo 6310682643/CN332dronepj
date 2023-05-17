@@ -1,6 +1,4 @@
 # CN332dronepj
-Download: [arial-car-track](https://github.com/6310682783/act)
-
 #### สมาชิก
 - ปรเมศวร์ ไร่ข้าว 6310680258
 - สุธีกานต์ เก่งกรีฑาพล 6310682676
@@ -12,3 +10,6 @@ Download: [arial-car-track](https://github.com/6310682783/act)
 
 # Demo clip
 [![>>>>>>DEMO link<<<<<<](Youtube_logo.png)](https://www.youtube.com/watch?v=ol6rt42prb0)
+
+## เอกสารประกอบ
+[เอกสารประกอบ](https://drive.google.com/file/d/1MImA2VwKu6yOzklXKevmQHJ2E-3_MkDq/view?usp=sharing)
